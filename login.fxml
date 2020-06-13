@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -44,16 +44,16 @@
             <Image url="@Images/teknik.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="89.0" layoutY="58.0" prefHeight="60.0" prefWidth="543.0" text="Orari i Konsultimeve - FIEK">
+      <Label layoutX="99.0" layoutY="58.0" prefHeight="60.0" prefWidth="543.0" text="Orari i Konsultimeve - FIEK">
          <font>
             <Font name="SansSerif Bold Italic" size="35.0" />
          </font>
       </Label>
-      <SplitMenuButton layoutX="611.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="71.0" text="LANG">
+      <MenuButton layoutX="607.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="69.0" text="LANG">
         <items>
-          <MenuItem mnemonicParsing="false" text="EN" />
-          <MenuItem mnemonicParsing="false" text="ALB" />
+            <CheckMenuItem id="lang" mnemonicParsing="false" text="ALB" />
+            <CheckMenuItem id="lang" mnemonicParsing="false" selected="true" text="ENG" />
         </items>
-      </SplitMenuButton>
+      </MenuButton>
    </children>
 </AnchorPane>
