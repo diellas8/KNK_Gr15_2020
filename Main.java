@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 670, 500));
         primaryStage.setResizable(false);
