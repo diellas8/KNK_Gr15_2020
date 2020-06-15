@@ -1,0 +1,50 @@
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #e2e5f5;
+    -fx-stroke: black;
+    -fx-size:50;
+    -fx-alignment: CENTER ;
+    -fx-text-alignment: center;
+
+}
+//Style of each column header's background in the tableView
+.table-view .column-header-background{
+    -fx-background-color: #f7dca1;
+}
+
+ //Style of each column header's label  in the tableView
+.table-view .column-header-background .label{
+     -fx-background-color: transparent;
+    -fx-font-weight:bold;
+    -fx-text-fill: black;
+    -fx-font-size:18px;
+}
+
+//Style of each column in the tableView
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+ //Style of each table cell
+.table-view .table-cell{
+
+    -fx-font-size:16px;           //the font size you asked in the comments below
+}
+
+
+//Style for each < non odd> row of table view
+ .table-row-cell{
+    -fx-background-color: #eef5e2;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;
+}
+
+//Style for each <odd> row of table view
+.table-row-cell:odd{
+    -fx-background-color: #f5f2e2;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;
+}
+
