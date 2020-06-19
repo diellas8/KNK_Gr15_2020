@@ -215,13 +215,18 @@ VALUES
 
 
 
+INSERT INTO Studentet (s_ID, Emri, Mbiemri, Email, Viti) 
+VALUES
+	(101, 'Nora', 'Berisha', 'nora.berisha@gmail.com', 2),
+	(102, 'Diella', 'Simnica', 'diella.simnica@gmail.com', 2),
+	(103, 'Erisera', 'Troshupa', 'erisera.troshupa@gmail.com', 2),
+	(104, 'Fiona', 'Mehmeti', 'fiona.mehmeti@gmail.com', 2),
+	(105, 'Fortuna', 'Gashi', 'fortuna.gashi@gmail.com', 2),
+	(106, 'Rajmonda', 'Shllaku', 'rajmonda.shllaku@gmail.com', 2),
+	(107, 'Rina', 'Bajra', 'rina.bajra@gmail.com', 2),
+	(101, 'Drenusha', 'Pirraku', 'drenusha.pirraku@gmail.com', 2),
 
 
 
 
 
-
-
-
-
-	
