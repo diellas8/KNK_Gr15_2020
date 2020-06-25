@@ -72,6 +72,7 @@ public class Admin implements Initializable {
         else if(event.getSource()==btnLendet){
             lbStatus.setText("Lendet");
 
+
         }
     }
     @FXML
