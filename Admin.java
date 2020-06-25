@@ -84,6 +84,11 @@ public class Admin implements Initializable {
 
     }
 
+    public void fshij(javafx.event.ActionEvent actionEvent) {
+    }
+
+    public void shto(javafx.event.ActionEvent actionEvent) {
+    }
 }
 
 
