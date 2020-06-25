@@ -1,0 +1,58 @@
+INSERT INTO Lendet (Emri, Profesori, Asistenti, Viti, Drejtimi) 
+VALUES
+	('Matematika 1', 1, 51, 1, 'Kompjuterike'),
+	('Matematika 1', 2, 51, 1, 'Kompjuterike'),
+	('Matematika 2', 1, 52, 1, 'Kompjuterike'),
+	('Matematika 2', 2, 52, 1, 'Kompjuterike'),
+	('Matematika 3K', 1, 51, 2, 'Kompjuterike'),
+	('Matematika 3E', 3, 52, 2, 'Elektro'),
+	('Fizika 1', 4, 54, 1, 'Kompjuterike'),
+	('Fizika 2', 4, 54, 1, 'Kompjuterike'),
+	('Bazat e Elektronikes', 5, 55, 1, 'Kompjuterike'),
+	('Bazat e Elektronikes', 6, 56, 1, 'Kompjuterike'),
+	('Gjuhe Programuese', 7, 57, 1, 'Kompjuterike'),
+	('Gjuhe Angleze', 8, 8, 1, 'Kompjuterike'),
+	('Qarqet Elektrike', 5, 55, 1, 'Kompjuterike'),
+	('Qarqet Elektrike', 6, 56, 1, 'Kompjuterike'),
+	('Algoritmet', 7, 57, 1, 'Kompjuterike'),
+	('Qarqet Digjtiale', 8, 57, 1, 'Kompjuterike'),
+	('Elektronika', 10, 60, 2, 'Kompjuterike'),
+	('Sinajlet dhe Sistemet', 5, 55, 2, 'Kompjuterike'),
+	('Bazat e te dhenave', 11, 61, 2, 'Kompjuterike'),
+	('Interneti', 11, 62, 2, 'Kompjuterike'),
+	('POO', 12, 63, 2, 'Kompjuterike'),
+	('AOK', 13, 64, 2, 'Kompjuterike'),
+	('Siguria e te dhenave', 14, 65, 2, 'Kompjuterike'),
+	('Rrjetat kompjuterike', 14, 66, 2, 'Kompjuterike'),
+	('KNK', 12, 63, 2, 'Kompjuterike'),
+	('Programimi ne Internet', 13, 64, 2, 'Kompjuterike'),
+	('Programimi ne Internet', 13, 67, 2, 'Kompjuterike'),
+	('Menaxhimi i projektit', 15, 68, 2, 'Kompjuterike'),
+	('Mikroprocesoret', 20, 57, 3, 'Kompjuterike'),
+	('Sistemet Operative', 21, 63, 3, 'Kompjuterike'),
+	('Mikroprocesoret', 20, 57, 3, 'Kompjuterike'),
+
+
+
+
+
+
+
+
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	

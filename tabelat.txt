@@ -1,0 +1,80 @@
+sqlite3 menaxhimi_konsultimeve.db
+
+create table Lendet (
+Emri TEXT PRIMARY KEY ,
+Profesori INTEGER NOT NULL,
+Asistenti INTEGER NOT NULL,
+Viti INTEGER NOT NULL CHECK (Viti IN (1, 2, 3)),
+Drejtimi TEXT NOT NULL CHECK (Drejtimi IN ('Kompjuterike', 'Elektro')),
+
+FOREIGN KEY (Profesori) REFERENCES Mesimdhenesit (m_ID),
+FOREIGN KEY (Asistenti) REFERENCES Mesimdhenesit (m_ID)
+
+);
+
+
+
+
+create table Users (
+u_ID INTEGER PRIMARY KEY AUTOINCREMENT, 
+Email TEXT NOT NULL UNIQUE,
+Salt TEXT NOT NULL,
+Hash TEXT NOT NULL,
+Statusi INTEGER NOT NULL  CHECK (Statusi IN (1, 2, 3))
+
+);
+
+
+
+
+create table Mesimdhenesit (
+m_ID INTEGER PRIMARY KEY, 
+Emri TEXT NOT NULL,
+Mbiemri TEXT NOT NULL ,
+Email TEXT NOT NULL UNIQUE,
+Statusi INTEGER NOT NULL,
+
+FOREIGN KEY (m_ID) REFERENCES Users(u_ID)
+
+);
+
+
+
+create table Orari (
+Mesimdhenesi INTEGER NOT NULL,
+Salla INTEGER NOT NULL CHECK(Salla IN (700, 701, 702, 703, 704, 705)) ,
+Ora_f TEXT NOT NULL ,
+Ora_m TEXT NOT NULL ,
+Lenda TEXT NOT NULL,
+
+FOREIGN KEY (Mesimdhenesi) REFERENCES Mesimdhenesit(m_ID),
+FOREIGN KEY (Lenda) REFERENCES Lendet(Emri),
+PRIMARY  KEY (Salla, Ora)
+);
+
+
+
+create table Studentet (
+s_ID INTEGER PRIMARY KEY, 
+Emri TEXT NOT NULL,
+Mbiemri TEXT NOT NULL ,
+Email TEXT NOT NULL UNIQUE,
+Viti INTEGER NOT NULL CHECK (Viti IN (1, 2, 3)),
+
+FOREIGN KEY (s_ID) REFERENCES Users(u_ID)
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
