@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<BorderPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin">
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -105,12 +105,12 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <TableView prefHeight="332.0" prefWidth="556.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tabelaAdmin" prefHeight="332.0" prefWidth="556.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="144.0" text="Emri" />
-                        <TableColumn prefWidth="145.0" text="Mbiemri" />
-                        <TableColumn prefWidth="75.0" text="Roli" />
+                      <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="Emri" prefWidth="144.0" text="Emri" />
+                        <TableColumn fx:id="Mbiemri" prefWidth="145.0" text="Mbiemri" />
+                        <TableColumn fx:id="Roli" prefWidth="75.0" text="Roli" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -122,12 +122,12 @@
                         <Insets right="5.0" top="15.0" />
                      </GridPane.margin>
                   </TableView>
-                  <TextField prefHeight="36.0" prefWidth="329.0">
+                  <TextField fx:id="textInput" prefHeight="36.0" prefWidth="329.0">
                      <GridPane.margin>
                         <Insets left="50.0" right="200.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="98.0" text="Add">
+                  <Button fx:id="addBtn" mnemonicParsing="false" onAction="#shto" prefHeight="34.0" prefWidth="98.0" text="Add">
                      <GridPane.margin>
                         <Insets left="385.0" />
                      </GridPane.margin>
@@ -135,7 +135,7 @@
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="91.0" text="Delete">
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#fshij" prefHeight="36.0" prefWidth="91.0" text="Delete">
                      <GridPane.margin>
                         <Insets left="486.0" />
                      </GridPane.margin>

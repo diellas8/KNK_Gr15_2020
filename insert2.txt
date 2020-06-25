@@ -86,7 +86,7 @@ VALUES
 	(52, 'Valdete', 'Hamiti', 'valdete.hamiti@uni-pr.edu', 2),
 	(53, 'Shqipe', 'Lohaj', 'shqipe.lohaj@uni-pr.edu', 2),
 	(54, 'Valon', 'Veliu', 'valon.veliu@uni-pr.edu', 2),
-        (55, 'Doruntina', 'Berisha', 'doruntina.berisha@uni-pr.edu', 2),
+    (55, 'Doruntina', 'Berisha', 'doruntina.berisha@uni-pr.edu', 2),
 	(56, 'Jeta', 'Dobruna', 'jeta.dobruna@uni-pr.edu', 2),
 	(57, 'Admri', 'Kadriu', 'admri.kadriu@uni-pr.edu', 2),
 	(58, 'Artan', 'Mazrekaj', 'artan.mazrekaj@uni-pr.edu', 2),
@@ -212,6 +212,13 @@ VALUES
 	(93, 703, '17:00', '17:30', 'Modelimi dhe simulimi'),
 	(94, 703, '17:30', '18:00', 'Sensorët dhe aktuatorët'),
 	(95, 703, '18:00', '18:30', 'Dirigjimi në kohë reale '),
+
+
+
+
+
+
+
 
 
 
