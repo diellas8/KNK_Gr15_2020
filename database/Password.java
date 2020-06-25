@@ -66,7 +66,8 @@ public class Password {
                 String dbSalt = resultSet.getString("salt");
                 String dbPassword = resultSet.getString("hashed_password");
                 if (correctPassword(dbSalt, dbPassword, password)) {
-                    return 1;   // ok
+
+                    return Integer.parseInt(resultSet.getString("Statusi"));   // ok
                 } else
                     return 0; // password gabim
             }
