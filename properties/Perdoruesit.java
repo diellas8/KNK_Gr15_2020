@@ -43,7 +43,7 @@ public class Perdoruesit extends baza{
     }
 
     public Perdoruesit(int u_id, String Email, String Salt, String Hash, String Roli){
-        this.u_ID = u_ID;
+        this.u_ID = u_id;
         this.Email = Email;
         this.Salt = Salt;
         this.Hash = Hash;
