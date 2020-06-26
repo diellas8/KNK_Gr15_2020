@@ -48,6 +48,7 @@ private Stage primaryStage= new Stage();
                 break;
             }
             case 2:{
+                Profesor.saveEmail(email.getText());
                 root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
                 primaryStage.setTitle("Profesor");
                 primaryStage.setScene(new Scene(root, 700, 550));
