@@ -52,9 +52,9 @@ public class Mesimdhenes extends baza {
 
     public static void startColumn(Connection dbcon,TableView tabelaAdmin, TableColumn<?,?> first, TableColumn<?,?>second,
                               TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth){
-        first.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        first.setCellValueFactory(new PropertyValueFactory<>("m_id"));
         second.setCellValueFactory(new PropertyValueFactory<>("Emri"));
-        third.setCellValueFactory(new PropertyValueFactory<>("Mbimeri"));
+        third.setCellValueFactory(new PropertyValueFactory<>("Mbiemri"));
         fourth.setCellValueFactory(new PropertyValueFactory<>("Email"));
         fifth.setCellValueFactory(new PropertyValueFactory<>("Statusi"));
         tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -77,11 +77,11 @@ public class Mesimdhenes extends baza {
         ResultSet res = stmt.executeQuery(query);
 
        while(res.next()) {
-           int m_id = res.getInt(0);
-           String emri= res.getString(1);
-           String mbiemri = res.getString(2);
-           String email = res.getString(3);
-           int statusi = res.getInt(4);
+           int m_id = res.getInt("m_ID");
+           String emri= res.getString("Emri");
+           String mbiemri = res.getString("Mbiemri");
+           String email = res.getString("Email");
+           int statusi = res.getInt("Statusi");
            list.add(new Mesimdhenes(m_id, emri, mbiemri, email, statusi));
 
         }
