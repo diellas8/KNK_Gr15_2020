@@ -1,4 +1,4 @@
-INSERT INTO Lendet (Emri, Profesori, Viti) 
+INSERT INTO Lendet (Lenda, Profesori, Viti)
 VALUES
 	('Matematika 1', 1, 1),
 	('Matematika 1', 2, 1),
@@ -44,7 +44,7 @@ VALUES
 	('MikroprocesorÃƒÂ«t dhe mikrokontrollorÃƒÂ«t', 42, 3),
 	('Modelimi dhe simulimi', 43, 3),
 	('SensorÃƒÂ«t dhe aktuatorÃƒÂ«t', 44, 3),
-	('Dirigjimi nÃƒÂ« kohÃƒÂ« reale ', 45, 3),
+	('Dirigjimi nÃƒÂ« kohÃƒÂ« reale ', 45, 3);
 
 
 
@@ -79,10 +79,12 @@ VALUES
 	(42, 'Artiola ', 'Mehmeti', 'artiola.mehmeti@uni-pr.edu', 1),
 	(43, 'Shpend ', 'Ajeti', 'ahpend.ajeti@uni-pr.edu', 1),
 	(44, 'Fatos ', 'Zeqiri', 'fatos.zeqiri@uni-pr.edu', 1),
-	(45, 'Egzona ', 'Aliu', 'egzona.aliu@uni-pr.edu', 1),
+	(45, 'Egzona ', 'Aliu', 'egzona.aliu@uni-pr.edu', 1);
 
 
 
+INSERT INTO Mesimdhenesit (m_ID , Emri , Mbiemri , Email , Statusi )
+VALUES
 	(54, 'Valon', 'Veliu', 'valon.veliu@uni-pr.edu', 2),
      (55, 'Doruntina', 'Berisha', 'doruntina.berisha@uni-pr.edu', 2),
 	(56, 'Jeta', 'Dobruna', 'jeta.dobruna@uni-pr.edu', 2),
@@ -111,7 +113,7 @@ VALUES
 	(92, 'Faton', 'Maliqi', 'faton.maliqi@uni-pr.edu', 2),
 	(93, 'Blend', 'Shala', 'blend.shala@uni-pr.edu', 2),
 	(94, 'Arian', 'Pllana', 'arian.pllana@uni-pr.edu', 2),
-	(95, 'Donika', 'Canolli', 'donika.canolli@uni-pr.edu', 2),
+	(95, 'Donika', 'Canolli', 'donika.canolli@uni-pr.edu', 2);
 
 
 

@@ -11,15 +11,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Mesimdhenes extends baza {
     private int m_id;
     private String emri;
     private String mbiemri;
     private String email;
-    private int statusi;
+    private String statusi;
 
-    public Mesimdhenes(int m_id, String emri, String mbiemri, String email, int statusi) {
+    public Mesimdhenes(int m_id, String emri, String mbiemri, String email, String statusi) {
         this.m_id = m_id;
         this.emri = emri;
         this.mbiemri = mbiemri;
@@ -46,13 +47,16 @@ public class Mesimdhenes extends baza {
         return email;
     }
 
-    public int getStatusi() {
+    public String getStatusi() {
         return statusi;
     }
 
-    public static TableView<baza> startColumn(Connection dbcon, TableView tabelaAdmin, TableColumn<?,?> first, TableColumn<?,?>second,
-                                              TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth){
-        first.setCellValueFactory(new PropertyValueFactory<>("m_ID"));
+    public static void startColumn(Connection dbcon, TableView tabelaAdmin,TableColumn<?,?> first, TableColumn<?,?>second,
+                              TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth){
+        changeVisibility(first, second, third, fourth, fifth);
+        changeWidth(tabelaAdmin,first, second, third, fourth, fifth);
+        changeName(first, second, third, fourth, fifth);
+        first.setCellValueFactory(new PropertyValueFactory<>("m_id"));
         second.setCellValueFactory(new PropertyValueFactory<>("Emri"));
         third.setCellValueFactory(new PropertyValueFactory<>("Mbiemri"));
         fourth.setCellValueFactory(new PropertyValueFactory<>("Email"));
@@ -65,13 +69,48 @@ public class Mesimdhenes extends baza {
         });
         try{
              tabelaAdmin.setItems(getMesimdhenesit(dbcon));
-             return tabelaAdmin;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
-
     }
+
+    static void changeVisibility(TableColumn<?, ?> first, TableColumn<?, ?> second, TableColumn<?, ?> third, TableColumn<?, ?> fourth, TableColumn<?, ?> fifth) {
+        first.setVisible(true);
+        second.setVisible(true);
+        third.setVisible(true);
+        fourth.setVisible(true);
+        fifth.setVisible(true);
+    }
+
+    private static void changeName(TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
+        first.setText("ID");
+        second.setText("Emri");
+        third.setText("Mbiemri");
+        fourth.setText("Email");
+        fifth.setText("Statusi");
+    }
+
+    public static void changeWidth(TableView tableView,TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
+        first.prefWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        second.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        third.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        fourth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.40));
+        fifth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+
+        first.minWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        second.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        third.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        fourth.minWidthProperty().bind(tableView.widthProperty().multiply(0.40));
+        fifth.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+
+        first.maxWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        second.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        third.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        fourth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.40));
+        fifth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+    }
+
+
 
     private static ObservableList<baza> getMesimdhenesit(Connection dbcon) throws Exception{
        ObservableList <baza> list = FXCollections.observableArrayList();
@@ -81,25 +120,26 @@ public class Mesimdhenes extends baza {
 
        while(res.next()) {
            int m_id = res.getInt("m_id");
-           String emri= res.getString(2);
-           String mbiemri = res.getString(3);
-           String email = res.getString(4);
-           int statusi = res.getInt(5);
-           list.add(new Mesimdhenes(m_id, emri, mbiemri, email, statusi));
+           String emri= res.getString("Emri");
+           String mbiemri = res.getString("Mbiemri");
+           String email = res.getString("Email");
+           int statusi = res.getInt("Statusi");
+           String Statusi = statusi == 1 ? "Profesor" : "Asistent";
+           list.add(new Mesimdhenes(m_id, emri, mbiemri, email, Statusi));
 
         }
         return list;
    }
-//   public static TableView createTable(){
-//        TableView tableView = new TableView<>();
-//       TableColumn<?, ?> m_id = new TableColumn<>("m_id");
-//       TableColumn<?, ?> emri = new TableColumn<>("Emri");
-//       TableColumn<?, ?> mbiemri = new TableColumn<>("Mbiemri");
-//       TableColumn<?, ?> email = new TableColumn<>("Email");
-//       TableColumn<?, ?> Status = new TableColumn<>("Status");
-//       tableView.getColumns().addAll(m_id, emri, mbiemri, email, Status);
-//       return tableView;
-//   }
+   public static TableView createTable(){
+        TableView tableView = new TableView<>();
+       TableColumn<?, ?> m_id = new TableColumn<>("ID");
+       TableColumn<?, ?> emri = new TableColumn<>("Emri");
+       TableColumn<?, ?> mbiemri = new TableColumn<>("Mbiemri");
+       TableColumn<?, ?> email = new TableColumn<>("Email");
+       TableColumn<?, ?> Status = new TableColumn<>("Status");
+       tableView.getColumns().addAll(m_id, emri, mbiemri, email, Status);
+       return tableView;
+   }
 
 
 
