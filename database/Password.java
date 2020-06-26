@@ -61,7 +61,6 @@ public class Password {
             ResultSet resultSet = statement.executeQuery(query);
             if(resultSet.next()) {
                 String dbSalt = resultSet.getString("Salt");
-                System.out.println(dbSalt);
                 String dbPassword = resultSet.getString("Hash");
                 if (correctPassword(dbSalt, dbPassword, password)) {
 

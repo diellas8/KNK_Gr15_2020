@@ -40,7 +40,7 @@ private Stage primaryStage= new Stage();
         switch (role){
             case 1: {
                 root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-                primaryStage.setTitle("admin");
+                primaryStage.setTitle("Admin");
                 primaryStage.setScene(new Scene(root, 800, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
@@ -48,8 +48,8 @@ private Stage primaryStage= new Stage();
                 break;
             }
             case 2:{
-                root = FXMLLoader.load(getClass().getResource("profesor.fxml"));
-                primaryStage.setTitle("profesor");
+                root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
+                primaryStage.setTitle("Profesor");
                 primaryStage.setScene(new Scene(root, 700, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
@@ -59,7 +59,7 @@ private Stage primaryStage= new Stage();
             }
             case 3: {
                 root = FXMLLoader.load(getClass().getResource("user.fxml"));
-                primaryStage.setTitle("user");
+                primaryStage.setTitle("User");
                 primaryStage.setScene(new Scene(root, 700, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
