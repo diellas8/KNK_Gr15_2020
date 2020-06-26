@@ -71,21 +71,21 @@ public class Perdoruesit extends baza{
     private static void  changeWidth(TableView tableView,TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
         first.prefWidthProperty().bind(tableView.widthProperty().multiply(0.1));
         second.prefWidthProperty().bind(tableView.widthProperty().multiply(0.3));
-        third.prefWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fourth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fifth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        third.prefWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fourth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fifth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.2));
 
         first.minWidthProperty().bind(tableView.widthProperty().multiply(0.1));
         second.minWidthProperty().bind(tableView.widthProperty().multiply(0.3));
-        third.minWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fourth.minWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fifth.minWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        third.minWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fourth.minWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fifth.minWidthProperty().bind(tableView.widthProperty().multiply(0.2));
 
         first.maxWidthProperty().bind(tableView.widthProperty().multiply(0.1));
         second.maxWidthProperty().bind(tableView.widthProperty().multiply(0.3));
-        third.maxWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fourth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.25));
-        fifth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        third.maxWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fourth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.20));
+        fifth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.2));
     }
 
     private static void  changeName(TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
