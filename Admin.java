@@ -72,9 +72,10 @@ public class Admin implements Initializable {
     @FXML
     public void handleClicks(javafx.event.ActionEvent event) {
         if (event.getSource() == btnStudentet) {
+            tabelaAdmin.getItems().clear();
             lbStatus.setText("Studentet");
             Roli.setText("Email");
-            tabelaAdmin.getItems().clear();
+
 
 
         } else if (event.getSource() == btnProfesor) {
@@ -91,56 +92,52 @@ public class Admin implements Initializable {
             Mbiemri.setMaxWidth(0);
             Mbiemri.setPrefWidth(0);
             Roli.setText("Viti");
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
 
 
-            id.setCellValueFactory(new PropertyValueFactory<>("Lenda"));
-            Emri.setCellValueFactory(new PropertyValueFactory<>("Profesoret"));
-            Roli.setCellValueFactory(new PropertyValueFactory<>("Viti"));
-            tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-            tabelaAdmin.getSelectionModel().selectedItemProperty().addListener((ov, old, _new)->{
-                if(_new!=null)
-                    setLendetToUI((Lenda)_new);
-            });
-            try{
-                tabelaAdmin.setMinHeight(0);
-               // tabelaAdmin.setItems(getLendet());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+//            id.setCellValueFactory(new PropertyValueFactory<>("Lenda"));
+//            Emri.setCellValueFactory(new PropertyValueFactory<>("Profesoret"));
+//            Roli.setCellValueFactory(new PropertyValueFactory<>("Viti"));
+//            tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+//            tabelaAdmin.getSelectionModel().selectedItemProperty().addListener((ov, old, _new)->{
+//                if(_new!=null)
+//                    setLendetToUI((Lenda)_new);
+//            });
+//            try{
+//                tabelaAdmin.setMinHeight(0);
+//                 tabelaAdmin.setItems(getLendet());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
         }
-    }
+   }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-    private Lenda getLendetFromUI(){
-        String Lenda= id.getText();
-        String Profesori=Emri.getText();
-        int Viti = Integer.parseInt(Roli.getText());
-        return new Lenda(Lenda, Profesori, Viti);
-    }
-
-    private void setLendetToUI(Lenda lenda){
-//        id.setText(lenda.getLenda());
-//        Emri.setText(lenda.getProfesoret());
-//        Roli.setText(lenda.getViti()+"");
-
-    }
-
-
-//
-//
-//   //
-//    @FXML
-//    void shto(ActionEvent event) {
-//
+//    private Lenda getLendetFromUI(){
+//        String Lenda= id.getText();
+//        String Profesori=Emri.getText();
+//        int Viti = Integer.parseInt(Roli.getText());
+//        return new Lenda(Lenda, Profesori, Viti);
 //    }
+
+
+
+
 //
-//    @FXML
-//    void fshij(ActionEvent event) {
+//
+//
+  @FXML
+  void shto(ActionEvent event) {
+//
+   }
+//
+   @FXML
+  void fshij(ActionEvent event) {
 //
 //        try {
 //            Lenda lenda = (Lenda) tabelaAdmin.getSelectionModel().getSelectedItem();
@@ -156,7 +153,7 @@ public class Admin implements Initializable {
 //        } catch (Exception exe) {
 //            //    printError(e);
 //        }
-//    }
+   }
 //
 //
 //    private void deletelenda(String Lenda) throws Exception{
@@ -175,30 +172,12 @@ public class Admin implements Initializable {
 //    }
 //
 //
-//    public void fshij(javafx.event.ActionEvent actionEvent) {
-//    }
+    public void fshij(javafx.event.ActionEvent actionEvent) {
+    }
 //
-//    public void shto(javafx.event.ActionEvent actionEvent) {
-//    }
+    public void shto(javafx.event.ActionEvent actionEvent) {
+    }
 //
 //
-//    private ObservableList<baza> getLendet() throws Exception{
-//        ObservableList <baza> list = FXCollections.observableArrayList();
-//
-//        Statement stmt = dbcon.createStatement();
-//        String query= "SELECT l.Lenda, m.Emri, l.Viti FROM Lendet l INNER JOIN Mesimdhenesit m ON l.Profesori = m.m_ID";
-//        ResultSet res = stmt.executeQuery(query);
-//
-//       while(res.next()) {
-//           String Emri = res.getString("Lenda");
-//           String Profesori= res.getString("Emri");
-//           int Viti = res.getInt("Viti");
-//           list.add(new Lenda(Emri, Profesori, Viti));
-//
-//        }
-//        return list;
-//    }
+
 }
-
-
-
