@@ -50,8 +50,9 @@ public class Mesimdhenes extends baza {
         return statusi;
     }
 
-    public static void startColumn(Connection dbcon,TableView tabelaAdmin, TableColumn<?,?> first, TableColumn<?,?>second,
+    public static void startColumn(Connection dbcon, TableColumn<?,?> first, TableColumn<?,?>second,
                               TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth){
+        TableView tabelaAdmin = createTable();
         first.setCellValueFactory(new PropertyValueFactory<>("ID"));
         second.setCellValueFactory(new PropertyValueFactory<>("Emri"));
         third.setCellValueFactory(new PropertyValueFactory<>("Mbimeri"));
@@ -86,6 +87,16 @@ public class Mesimdhenes extends baza {
 
         }
         return list;
+   }
+   public static TableView createTable(){
+        TableView tableView = new TableView<>();
+       TableColumn<?, ?> m_id = new TableColumn<>("ID");
+       TableColumn<?, ?> emri = new TableColumn<>("Emri");
+       TableColumn<?, ?> mbiemri = new TableColumn<>("Mbiemri");
+       TableColumn<?, ?> email = new TableColumn<>("Email");
+       TableColumn<?, ?> Status = new TableColumn<>("Status");
+       tableView.getColumns().addAll(m_id, emri, mbiemri, email, Status);
+       return tableView;
    }
 
 
