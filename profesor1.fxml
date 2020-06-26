@@ -26,7 +26,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Profesor">
    <children>
       <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
         <tabs>
@@ -93,7 +93,7 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Button layoutX="353.0" layoutY="401.0" mnemonicParsing="false"  prefHeight="31.0" prefWidth="282.0" style="-fx-border-radius: 5em; -fx-border-color: #a1b8f7; -fx-background-radius: 5em; -fx-background-color: #ffffff;" text="Ruaj" />
+                        <Button layoutX="353.0" layoutY="401.0" mnemonicParsing="false" onAction="#ruajKonsultim" prefHeight="31.0" prefWidth="282.0" style="-fx-border-radius: 5em; -fx-border-color: #a1b8f7; -fx-background-radius: 5em; -fx-background-color: #ffffff;" text="Ruaj" />
                         <RadioButton layoutX="407.0" layoutY="259.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="700">
                            <font>
                               <Font size="11.0" />
@@ -157,7 +157,7 @@
                                   <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="670.0" style="-fx-background-radius: 5em; -fx-border-radius: 5em; -fx-background-color: #ffffff; -fx-border-color: #6485de;" text="Largo" GridPane.rowIndex="1">
+                                    <Button fx:id="largo" mnemonicParsing="false" onAction="#largoKonsultim" prefHeight="32.0" prefWidth="670.0" style="-fx-background-radius: 5em; -fx-border-radius: 5em; -fx-background-color: #ffffff; -fx-border-color: #6485de;" text="Largo" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
