@@ -67,8 +67,6 @@ public class Admin implements Initializable {
 
 
 
-
-
     @FXML
     public void handleClicks(javafx.event.ActionEvent event) {
         if (event.getSource() == btnStudentet) {
@@ -94,22 +92,6 @@ public class Admin implements Initializable {
             Roli.setText("Viti");
             Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
 
-
-//            id.setCellValueFactory(new PropertyValueFactory<>("Lenda"));
-//            Emri.setCellValueFactory(new PropertyValueFactory<>("Profesoret"));
-//            Roli.setCellValueFactory(new PropertyValueFactory<>("Viti"));
-//            tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-//            tabelaAdmin.getSelectionModel().selectedItemProperty().addListener((ov, old, _new)->{
-//                if(_new!=null)
-//                    setLendetToUI((Lenda)_new);
-//            });
-//            try{
-//                tabelaAdmin.setMinHeight(0);
-//                 tabelaAdmin.setItems(getLendet());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
         }
    }
 
@@ -118,66 +100,21 @@ public class Admin implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-//    private Lenda getLendetFromUI(){
-//        String Lenda= id.getText();
-//        String Profesori=Emri.getText();
-//        int Viti = Integer.parseInt(Roli.getText());
-//        return new Lenda(Lenda, Profesori, Viti);
-//    }
 
 
-
-
-//
-//
-//
   @FXML
   void shto(ActionEvent event) {
-//
    }
-//
+
    @FXML
   void fshij(ActionEvent event) {
-//
-//        try {
-//            Lenda lenda = (Lenda) tabelaAdmin.getSelectionModel().getSelectedItem();
-//            try {
-//                deletelenda(lenda.getLenda());
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//            tabelaAdmin.getSelectionModel().clearSelection();
-//            tabelaAdmin.getItems().remove(lenda);
-//            setLendetToUI(new Lenda());
-//
-//        } catch (Exception exe) {
-//            //    printError(e);
-//        }
+
    }
-//
-//
-//    private void deletelenda(String Lenda) throws Exception{
-//        String sql = "DELETE FROM Lendet WHERE Lenda = ?";
-//        PreparedStatement stmt = dbcon.prepareStatement(sql);
-//        stmt.setString(1, Lenda);
-//        if (stmt.executeUpdate()<=0){
-//            throw new Exception("Nuk u fshi");
-//        }
-//
-//    }
-//
-//    private  void printError(){
-//        Alert Alert = new Alert(javafx.scene.control.Alert.AlertType.ERROR);
-//
-//    }
-//
-//
+
     public void fshij(javafx.event.ActionEvent actionEvent) {
     }
-//
+
     public void shto(javafx.event.ActionEvent actionEvent) {
     }
-//
-//
 
 }
