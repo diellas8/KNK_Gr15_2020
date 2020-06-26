@@ -53,11 +53,11 @@ public class Perdoruesit extends baza{
         changeWidth(tabelaAdmin, first, second, third, fourth, fifth);
         changeVisibility(first, second, third, fourth, fifth);
         changeName(first, second, third, fourth, fifth);
-        first.setCellValueFactory(new PropertyValueFactory<>("u_id"));
+        first.setCellValueFactory(new PropertyValueFactory<>("u_ID"));
         second.setCellValueFactory(new PropertyValueFactory<>("Email"));
         third.setCellValueFactory(new PropertyValueFactory<>("Salt"));
         fourth.setCellValueFactory(new PropertyValueFactory<>("Hash"));
-        fifth.setCellValueFactory(new PropertyValueFactory<>("Statusi"));
+        fifth.setCellValueFactory(new PropertyValueFactory<>("roli"));
 
         tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 

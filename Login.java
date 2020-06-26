@@ -35,12 +35,13 @@ private Stage primaryStage= new Stage();
     void checkData(ActionEvent event) {
 
         try {
+
             int role = database.Password.getData(email.getText(), password.getText());
         switch (role){
             case 1: {
                 root = FXMLLoader.load(getClass().getResource("admin.fxml"));
                 primaryStage.setTitle("admin");
-                primaryStage.setScene(new Scene(root, 700, 550));
+                primaryStage.setScene(new Scene(root, 800, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -69,6 +70,7 @@ private Stage primaryStage= new Stage();
         }
     }
         catch(Exception e){
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);

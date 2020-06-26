@@ -15,7 +15,7 @@ public class Password {
 
     static {
         try {
-            dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\projekti_siguri.db");
+            dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -56,27 +56,26 @@ public class Password {
 
 
     public static int getData( String email, String password) throws SQLException {
-        String query = "SELECT * from users where email = ?";
+        String query = "SELECT * from Users where email = '" + email+ "'";
         try {
-
-            PreparedStatement preparedStatement = dbCon.prepareStatement(query);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(query);
             if(resultSet.next()) {
-                String dbSalt = resultSet.getString("salt");
-                String dbPassword = resultSet.getString("hashed_password");
+                String dbSalt = resultSet.getString("Salt");
+                System.out.println(dbSalt);
+                String dbPassword = resultSet.getString("Hash");
                 if (correctPassword(dbSalt, dbPassword, password)) {
 
                     return Integer.parseInt(resultSet.getString("Statusi"));   // ok
-                } else
+                } else{
+
                     return 0; // password gabim
-            }
+            }}
             else {
+
                 return -1;   // email gabim
             }
 
         } catch (Exception e) {
-
             return  -2; // gabim db
         }
     }
