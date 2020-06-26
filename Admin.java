@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import properties.Lenda;
 import properties.Mesimdhenes;
+import properties.Perdoruesit;
 import properties.baza;
 
 import java.awt.event.ActionEvent;
@@ -75,8 +76,8 @@ public class Admin implements Initializable {
     public void handleClicks(javafx.event.ActionEvent event) {
         if (event.getSource() == btnStudentet) {
             tabelaAdmin.getItems().clear();
-            lbStatus.setText("Studentet");
-            Roli.setText("Email");
+            lbStatus.setText("Perdoruesit");
+            Perdoruesit.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
 
 
 
@@ -101,9 +102,11 @@ public class Admin implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lbStatus.setText("Profesoret");
-        tabelaAdmin.getItems().clear();
-        Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
+        lbStatus.setText("Lendet");
+        Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
+        Mbiemri.setVisible(false);
+        Email.setVisible(false);
+
 
     }
 

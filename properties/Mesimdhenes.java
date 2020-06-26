@@ -74,7 +74,7 @@ public class Mesimdhenes extends baza {
         }
     }
 
-    private static void changeVisibility(TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
+    static void changeVisibility(TableColumn<?, ?> first, TableColumn<?, ?> second, TableColumn<?, ?> third, TableColumn<?, ?> fourth, TableColumn<?, ?> fifth) {
         first.setVisible(true);
         second.setVisible(true);
         third.setVisible(true);
@@ -90,15 +90,24 @@ public class Mesimdhenes extends baza {
         fifth.setText("Statusi");
     }
 
-    private static void changeWidth(TableView tableView,TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
+    public static void changeWidth(TableView tableView,TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
         first.prefWidthProperty().bind(tableView.widthProperty().multiply(0.1));
         second.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
         third.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
         fourth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.40));
         fifth.prefWidthProperty().bind(tableView.widthProperty().multiply(0.15));
 
+        first.minWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        second.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        third.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        fourth.minWidthProperty().bind(tableView.widthProperty().multiply(0.40));
+        fifth.minWidthProperty().bind(tableView.widthProperty().multiply(0.15));
 
-
+        first.maxWidthProperty().bind(tableView.widthProperty().multiply(0.1));
+        second.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        third.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
+        fourth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.40));
+        fifth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.15));
     }
 
 

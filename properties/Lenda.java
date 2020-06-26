@@ -56,9 +56,18 @@ public class Lenda extends baza{
         }
 
     private static void changeWidth(TableView tableView,TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
-        nje.prefWidthProperty().bind(tableView.widthProperty().divide(4)); // w * 1/4
-        dy.prefWidthProperty().bind(tableView.widthProperty().divide(2)); // w * 1/2
-        tre.prefWidthProperty().bind(tableView.widthProperty().divide(4)); // w * 1/4
+        nje.prefWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        dy.prefWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        tre.prefWidthProperty().bind(tableView.widthProperty().multiply(0.2));
+
+        nje.minWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        dy.minWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        tre.minWidthProperty().bind(tableView.widthProperty().multiply(0.2));
+
+        nje.maxWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        dy.maxWidthProperty().bind(tableView.widthProperty().multiply(0.4));
+        tre.maxWidthProperty().bind(tableView.widthProperty().multiply(0.2));
+
     }
 
     private static void changeName(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
