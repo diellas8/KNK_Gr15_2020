@@ -3,7 +3,6 @@ sqlite3 menaxhimi_konsultimeve.db
 create table Lendet (
 Emri TEXT PRIMARY KEY ,
 Profesori INTEGER NOT NULL,
-Asistenti INTEGER NOT NULL,
 Viti INTEGER NOT NULL CHECK (Viti IN (1, 2, 3)),
 Drejtimi TEXT NOT NULL CHECK (Drejtimi IN ('Kompjuterike', 'Elektro')),
 
