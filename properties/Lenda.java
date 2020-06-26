@@ -41,27 +41,27 @@ public class Lenda extends baza{
         tabelaAdmin.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         tabelaAdmin.getSelectionModel().selectedItemProperty().addListener((ov, old, _new)->{
             if(_new!=null){
-              //  setLendetToUI((Lenda)_new);
-        }});
+                //  setLendetToUI((Lenda)_new);
+            }});
         try{
             tabelaAdmin.setMinHeight(0);
             tabelaAdmin.setItems(getLendet(dbcon));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        }
+    }
 
     private static ObservableList<baza> getLendet(Connection dbcon) throws Exception{
-       ObservableList <baza> list = FXCollections.observableArrayList();
-       Statement stmt = dbcon.createStatement();
+        ObservableList <baza> list = FXCollections.observableArrayList();
+        Statement stmt = dbcon.createStatement();
         String query= "SELECT l.Lenda, m.Emri, m.Mbiemri, l.Viti FROM Lendet l INNER JOIN Mesimdhenesit m ON l.Profesori = m.m_ID";
         ResultSet res = stmt.executeQuery(query);
 
-       while(res.next()) {
-           String Emri = res.getString("Lenda");
-           String Profesori= res.getString("Emri") + " " + res.getString("Mbiemri");
-           int Viti = res.getInt("Viti");
-           list.add(new Lenda(Emri, Profesori, Viti));
+        while(res.next()) {
+            String Emri = res.getString("Lenda");
+            String Profesori= res.getString("Emri") + " " + res.getString("Mbiemri");
+            int Viti = res.getInt("Viti");
+            list.add(new Lenda(Emri, Profesori, Viti));
 
         }
         return list;
@@ -70,11 +70,4 @@ public class Lenda extends baza{
 
 
 
-    }
-
-
-
-
-
-
-
+}

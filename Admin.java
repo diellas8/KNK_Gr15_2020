@@ -83,7 +83,7 @@ public class Admin implements Initializable {
         } else if (event.getSource() == btnProfesor) {
             lbStatus.setText("Profesoret");
             tabelaAdmin.getItems().clear();
-            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
+            tabelaAdmin=Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
             Mbiemri.setMinWidth(100);
             Mbiemri.setMaxWidth(100);
             Mbiemri.setPrefWidth(100);
