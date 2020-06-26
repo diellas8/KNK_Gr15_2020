@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import properties.Lenda;
+import properties.Mesimdhenes;
 import properties.baza;
 
 import java.awt.event.ActionEvent;
@@ -57,6 +58,9 @@ public class Admin implements Initializable {
     private TableColumn<?, ?> Roli;
 
     @FXML
+    private TableColumn<?, ?> Email;
+
+    @FXML
     private TextField textInput;
 
     @FXML
@@ -79,18 +83,17 @@ public class Admin implements Initializable {
         } else if (event.getSource() == btnProfesor) {
             lbStatus.setText("Profesoret");
             tabelaAdmin.getItems().clear();
+            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
 
 
         } else if (event.getSource() == btnLendet) {
             tabelaAdmin.getItems().clear();
             lbStatus.setText("Lendet");
-            id.setText("Lenda");
-            Emri.setText("Ligjeruesi");
-            Mbiemri.setMinWidth(0);
-            Mbiemri.setMaxWidth(0);
-            Mbiemri.setPrefWidth(0);
-            Roli.setText("Viti");
             Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
+            Mbiemri.setVisible(false);
+            Email.setVisible(false);
+
+
 
         }
    }
@@ -98,6 +101,9 @@ public class Admin implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lbStatus.setText("Profesoret");
+        tabelaAdmin.getItems().clear();
+        Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
 
     }
 

@@ -35,6 +35,10 @@ public class Lenda extends baza{
     }
 
     public static void startColumn(Connection dbcon, TableView tabelaAdmin, TableColumn<?, ?> nje, TableColumn<?, ?> dy, TableColumn<?, ?> tre){
+        changeVisibility(nje, dy, tre);
+        changeWidth(tabelaAdmin,nje, dy, tre);
+        changeName(nje, dy, tre);
+
         nje.setCellValueFactory(new PropertyValueFactory<>("Lenda"));
         dy.setCellValueFactory(new PropertyValueFactory<>("Profesoret"));
         tre.setCellValueFactory(new PropertyValueFactory<>("Viti"));
@@ -50,6 +54,24 @@ public class Lenda extends baza{
             e.printStackTrace();
         }
         }
+
+    private static void changeWidth(TableView tableView,TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
+        nje.prefWidthProperty().bind(tableView.widthProperty().divide(4)); // w * 1/4
+        dy.prefWidthProperty().bind(tableView.widthProperty().divide(2)); // w * 1/2
+        tre.prefWidthProperty().bind(tableView.widthProperty().divide(4)); // w * 1/4
+    }
+
+    private static void changeName(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
+        nje.setText("Lenda");
+        dy.setText("Ligjeruesi");
+        tre.setText("Viti akademik");
+    }
+
+    private static void changeVisibility(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
+        nje.setVisible(true);
+        dy.setVisible(true);
+        tre.setVisible(true);
+    }
 
     private static ObservableList<baza> getLendet(Connection dbcon) throws Exception{
        ObservableList <baza> list = FXCollections.observableArrayList();

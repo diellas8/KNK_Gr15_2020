@@ -77,12 +77,12 @@ public class Perdoruesit extends baza{
            String Salt = res.getString("Salt");
            String Hash = res.getString("Hash");
            int Statusi = res.getInt("Statusi");
-           list.add(new Lenda(u_ID, Email, Salt, Hash, Statusi));
+           list.add(new Perdoruesit(u_ID, Email, Salt, Hash, Statusi));
 
         }
         return list;
     }
-    }
+
 
 
 

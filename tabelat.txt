@@ -41,7 +41,7 @@ FOREIGN KEY (m_ID) REFERENCES Users(u_ID)
 create table Orari (
 Mesimdhenesi INTEGER NOT NULL,
 Salla INTEGER NOT NULL CHECK(Salla IN (700, 701, 702, 703, 704, 705)) ,
-Ora_f TEXT NOT NULL ,
+Ora TEXT NOT NULL ,
 Ora_m TEXT NOT NULL ,
 Lenda TEXT NOT NULL,
 
@@ -56,7 +56,7 @@ create table Studentet (
 s_ID INTEGER PRIMARY KEY, 
 Emri TEXT NOT NULL,
 Mbiemri TEXT NOT NULL ,
-Email TEXT NOT NULL UNIQUE
+Email TEXT NOT NULL UNIQUE,
 
 FOREIGN KEY (s_ID) REFERENCES Users(u_ID)
 
