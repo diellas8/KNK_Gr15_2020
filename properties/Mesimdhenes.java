@@ -8,13 +8,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Mesimdhenes extends baza {
-    private int m_id;
+    private static int m_id;
     private String emri;
     private String mbiemri;
     private String email;
@@ -132,7 +130,7 @@ public class Mesimdhenes extends baza {
    }
    public static TableView createTable(){
         TableView tableView = new TableView<>();
-       TableColumn<?, ?> m_id = new TableColumn<>("ID");
+        TableColumn<?, ?> m_id = new TableColumn<>("ID");
        TableColumn<?, ?> emri = new TableColumn<>("Emri");
        TableColumn<?, ?> mbiemri = new TableColumn<>("Mbiemri");
        TableColumn<?, ?> email = new TableColumn<>("Email");
@@ -141,9 +139,20 @@ public class Mesimdhenes extends baza {
        return tableView;
    }
 
+    public static ObservableList<baza> fshijMesimdhenesit(Connection dbcon) {
+        ObservableList <baza> list = FXCollections.observableArrayList();
+        try {
+            String query="DELETE FROM Mesimdhenesit WHERE m_ID=?";
+            PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
+            preparedStatement.setInt(1, m_id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex){
+            ex.printStackTrace();
 
-
+        }
+        return list;
+    }
 
 
 }
