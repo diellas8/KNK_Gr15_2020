@@ -11,26 +11,9 @@ import java.util.Base64;
 
 public class Password {
 
-    private static Connection dbCon;
+    private static Connection dbCon ;
 
-    static {
-        try {
-            dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    private static Statement statement;
-
-    static {
-        try {
-            statement = dbCon.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
+    private static Statement statement ;
 
 
     public static byte[] generateSalt(){
@@ -58,6 +41,7 @@ public class Password {
     public static int getData( String email, String password) throws SQLException {
         String query = "SELECT * from Users where email = '" + email+ "'";
         try {
+            initializeDB();
             ResultSet resultSet = statement.executeQuery(query);
             if(resultSet.next()) {
                 String dbSalt = resultSet.getString("Salt");
@@ -77,6 +61,12 @@ public class Password {
         } catch (Exception e) {
             return  -2; // gabim db
         }
+        finally {
+            if(statement!= null)
+            statement.close();
+            if(dbCon != null)
+            dbCon.close();
+        }
     }
 
     public static boolean correctPassword(String salt, String dbPassword, String password) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
@@ -84,5 +74,16 @@ public class Password {
         String hashedPassword = hashPassword(byteSalt, password);
         return hashedPassword.equals(dbPassword) ? true : false;
         }
+
+    private static void initializeDB() {
+        try {
+            if (dbCon == null || dbCon.isClosed())
+                dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");
+            if (statement == null || statement.isClosed())
+                statement = dbCon.createStatement();
+        } catch (Exception e) {
+
+        }
+    }
     }
 
