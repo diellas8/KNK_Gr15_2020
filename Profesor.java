@@ -1,50 +1,26 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import org.sqlite.SQLiteException;
-import properties.Lenda;
-import properties.Mesimdhenes;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Profesor implements Initializable {
-    private static Connection dbCon;
+    private static Connection dbCon = null;
 
-    static {
-        try {
-            dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 
-    private static Statement statement;
-    static {
-        try {
-            statement = dbCon.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
+    private static Statement statement = null;
 
 
     private static String email;
     private static int mesimdhenesi;
-    RadioButton chk = null;
-    private String lenda;
+
+
     @FXML
     private TextField hour;
 
@@ -101,6 +77,8 @@ public class Profesor implements Initializable {
 
     @FXML
     private TableColumn<?, ?> KolonaSallaP;
+    private String stringOra = "";
+    private int salle;
 
     public Profesor() {
     }
@@ -108,6 +86,51 @@ public class Profesor implements Initializable {
     @FXML
     void largoKonsultim(ActionEvent event) throws IOException {
 
+    }
+
+    public static void saveEmail(String em) {
+        email = em;
+    }
+
+    private static void caktoMesimdhenes(String email) throws SQLException {
+        String sql = "SELECT m_ID, Emri, Mbiemri from Mesimdhenesit WHERE email = '" + email + "'";
+        ResultSet resultSet = null;
+        try {
+            initializeDB();
+            resultSet = statement.executeQuery(sql);
+            if (resultSet.next())
+                mesimdhenesi = resultSet.getInt("m_ID");
+
+        } catch (SQLException throwables) {
+            printError("Ju nuk jeni te regjistruar ne databaze");
+        } finally {
+            if (statement != null)
+                statement.close();
+            if (dbCon != null)
+                dbCon.close();
+        }
+
+    }
+
+
+    private static void printError(String mesazh){
+        Alert.AlertType alertAlertType;
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Gabim!");
+        alert.setHeaderText(null);
+        alert.setContentText(mesazh);
+        alert.showAndWait();
+    }
+
+    private static void initializeDB() {
+        try {
+            if (dbCon == null || dbCon.isClosed())
+                dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");
+            if (statement == null || statement.isClosed())
+                statement = dbCon.createStatement();
+        } catch (Exception e) {
+            printError("Probleme me databazen.");
+        }
     }
 
     @FXML
@@ -132,59 +155,74 @@ public class Profesor implements Initializable {
         else {
             RadioButton selectedRadioButton = (RadioButton) salla.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
-            int salle = Integer.parseInt(toogleGroupValue);
-            String stringOra = hour.getText().replaceAll("\\s", "") + ":" + minutes.getText();
-            String lenda = lendet.getValue();
-            String dita = null;
+            salle = Integer.parseInt(toogleGroupValue);
+            stringOra = hour.getText().replaceAll("\\s", "") + ":" + minutes.getText();
+            String dita = "";
+
             try {
-                if(eHene.isSelected()) {
-                    String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Dita, Lenda) VALUES (" + mesimdhenesi + ", " + salle
-                            + ", '" + stringOra + "', '" + eHene.getText() + "', '" + lenda + "')";
+                initializeDB();
+                if (eHene.isSelected()) {
+
+                    dita = "E hene";
+                    String sql = queryForKonsultim(dita);
                     statement.executeUpdate(sql);
                 }
-            } catch (SQLiteException e){
+                if (eMarte.isSelected()) {
+                    dita = "E marte";
+                    String sql = queryForKonsultim(dita);
+                    statement.executeUpdate(sql);
+                }
+                if (eMerkure.isSelected()) {
+                    dita = "E merkure";
+                    String sql = queryForKonsultim(dita);
+                    statement.executeUpdate(sql);
+                }
+                if (eEnjte.isSelected()) {
+                    dita = "E enjte";
+                    String sql = queryForKonsultim(dita);
+                    statement.executeUpdate(sql);
+                }
+                if (ePremte.isSelected()) {
+                    dita = "E premte";
+                    String sql = queryForKonsultim(dita);
+                    statement.executeUpdate(sql);
+                }
+                if (dita.equals("")) {
+                    printError("Ju lutem zgjedhni se paku nje dite kur doni te mbani konsultime.");
+                }
+                clearInputs();
+                printConfirmation("Orari i konsultimeve u perditesua.");
+
+            } catch (SQLiteException e) {
                 printError("Salla eshte e rezervuar gjate asaj kohe. Ju lutem ndryshoni orarin.");
+            } finally {
+                statement.close();
+                dbCon.close();
             }
 
- //else if (!eHene.isSelected() && !eMarte.isSelected() && !eMerkure.isSelected() && !eEnjte.isSelected() && !ePremte.isSelected()){
-//              printError("Ju lutem caktoni se paku nje dite per tu mbajtur konsultimi.");
         }
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        caktoMesimdhenes(email);
-        populateChoicebox(lendet);
-
-
-    }
-
-
-    private static void printError(String mesazh){
-        Alert.AlertType alertAlertType;
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Gabim!");
-        alert.setHeaderText(null);
-        alert.setContentText(mesazh);
-        alert.showAndWait();
-    }
-
-    public static void saveEmail(String em){
-        email = em;
-        System.out.println(mesimdhenesi);
-    }
-
-    private void populateChoicebox(ChoiceBox<String> choiceBox){
-        String sql = "SELECT Lenda FROM Lendet WHERE Profesori = '" + mesimdhenesi + "' OR asistenti ='"+mesimdhenesi +"'";
-        ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery(sql);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            initializeDB();
+            caktoMesimdhenes(email);
+            populateChoicebox(lendet);
+        } catch (SQLException e) {
+
         }
-        while (true){
+
+
+    }
+
+    private void populateChoicebox(ChoiceBox<String> choiceBox) throws SQLException {
+
+        String sql = "SELECT Lenda FROM Lendet WHERE Profesori = '" + mesimdhenesi + "' OR asistenti ='" + mesimdhenesi + "'";
+
+        initializeDB();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
             try {
                 if (!resultSet.next()) break;
             } catch (SQLException throwables) {
@@ -193,28 +231,43 @@ public class Profesor implements Initializable {
             try {
                 choiceBox.setValue(resultSet.getString("Lenda"));
                 choiceBox.getItems().add(resultSet.getString("Lenda"));
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                printError(e + "");
             }
+            finally {
+                if (statement != null)
+                    statement.close();
+                if (dbCon != null)
+                    dbCon.close();
+            }
+
         }
     }
-
-    private static void caktoMesimdhenes(String email){
-        String sql = "SELECT m_ID, Emri, Mbiemri from Mesimdhenesit WHERE email = '" + email + "'";
-        ResultSet resultSet = null;
-        try {
-            resultSet = statement.executeQuery(sql);
-            if(resultSet.next())
-            mesimdhenesi = resultSet.getInt("m_ID");
-            System.out.println(mesimdhenesi);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
+    private void printConfirmation(String mesazhi){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Sukses");
+        alert.setContentText(mesazhi);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 
+    private String queryForKonsultim(String dita) {
+        String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Dita, Lenda) VALUES (" + mesimdhenesi + ", " + salle
+                + ", '" + stringOra + "', '" + dita + "', '" + lendet.getValue() + "')";
+        return sql;
+    }
 
+    private void clearInputs(){
+        hour.clear();
+        minutes.clear();
+        eHene.setSelected(false);
+        eMarte.setSelected(false);
+        eMerkure.setSelected(false);
+        eEnjte.setSelected(false);
+        ePremte.setSelected(false);
+        salla.getSelectedToggle().setSelected(false);
+
+    }
 
 
 }

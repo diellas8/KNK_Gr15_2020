@@ -127,11 +127,11 @@
                               <Font size="11.0" />
                            </font>
                         </RadioButton>
-                        <CheckBox fx:id="dita" layoutX="353.0" layoutY="79.0" mnemonicParsing="false" text="E hene " />
-                        <CheckBox layoutX="454.0" layoutY="79.0" mnemonicParsing="false" text="E marte" />
-                        <CheckBox layoutX="554.0" layoutY="79.0" mnemonicParsing="false" text="E merkure" />
-                        <CheckBox layoutX="353.0" layoutY="103.0" mnemonicParsing="false" text="E enjte" />
-                        <CheckBox layoutX="454.0" layoutY="103.0" mnemonicParsing="false" text="E premte" />
+                        <CheckBox fx:id="eHene" layoutX="353.0" layoutY="79.0" mnemonicParsing="false" text="E hene " />
+                        <CheckBox fx:id="eMarte" layoutX="454.0" layoutY="79.0" mnemonicParsing="false" text="E marte" />
+                        <CheckBox fx:id="eMerkure" layoutX="554.0" layoutY="79.0" mnemonicParsing="false" text="E merkure" />
+                        <CheckBox fx:id="eEnjte" layoutX="353.0" layoutY="103.0" mnemonicParsing="false" text="E enjte" />
+                        <CheckBox fx:id="ePremte" layoutX="454.0" layoutY="103.0" mnemonicParsing="false" text="E premte" />
                         <Label layoutX="352.0" layoutY="324.0" text="Cakto lenden">
                            <font>
                               <Font size="11.0" />

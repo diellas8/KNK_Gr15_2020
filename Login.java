@@ -67,18 +67,20 @@ private Stage primaryStage= new Stage();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 break;
             }
+            default: {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Email or password is wrong...");
+                alert.showAndWait();
+                email.clear();
+                password.clear();
+            }
 
         }
     }
         catch(Exception e){
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Email or password is wrong...");
-            alert.showAndWait();
-
-
         }
     }
 

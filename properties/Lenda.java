@@ -93,7 +93,6 @@ public class Lenda extends baza{
             String Profesori= res.getString("Emri") + " " + res.getString("Mbiemri");
             int Viti = res.getInt("Viti");
             list.add(new Lenda(Emri, Profesori, Viti));
-
         }
         return list;
     }
