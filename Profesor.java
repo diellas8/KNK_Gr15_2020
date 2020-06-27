@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import org.sqlite.SQLiteException;
+import properties.Konsultim;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,19 +32,19 @@ public class Profesor implements Initializable {
     private ToggleGroup salla;
 
     @FXML
-    private CheckBox eHene = new CheckBox("E hene");
+    private final CheckBox eHene = new CheckBox("E hene");
 
     @FXML
-    private CheckBox eMarte = new CheckBox("E marte");
+    private final CheckBox eMarte = new CheckBox("E marte");
 
     @FXML
-    private CheckBox eMerkure = new CheckBox("E merkure");
+    private final CheckBox eMerkure = new CheckBox("E merkure");
 
     @FXML
-    private CheckBox eEnjte = new CheckBox("E enjte");
+    private final CheckBox eEnjte = new CheckBox("E enjte");
 
     @FXML
-    private CheckBox ePremte = new CheckBox("E premte");
+    private final CheckBox ePremte = new CheckBox("E premte");
 
     @FXML
     private Button largo;
@@ -64,6 +65,9 @@ public class Profesor implements Initializable {
     private TableColumn<?, ?> kolonaSalla;
 
     @FXML
+    private TableColumn<?, ?> kolonaDita;
+
+    @FXML
     private TableView<?> tabelaPergjithshme;
 
     @FXML
@@ -81,11 +85,6 @@ public class Profesor implements Initializable {
     private int salle;
 
     public Profesor() {
-    }
-
-    @FXML
-    void largoKonsultim(ActionEvent event) throws IOException {
-
     }
 
     public static void saveEmail(String em) {
@@ -112,8 +111,7 @@ public class Profesor implements Initializable {
 
     }
 
-
-    private static void printError(String mesazh){
+    private static void printError(String mesazh) {
         Alert.AlertType alertAlertType;
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Gabim!");
@@ -131,6 +129,11 @@ public class Profesor implements Initializable {
         } catch (Exception e) {
             printError("Probleme me databazen.");
         }
+    }
+
+    @FXML
+    void largoKonsultim(ActionEvent event) throws IOException {
+
     }
 
     @FXML
@@ -212,6 +215,9 @@ public class Profesor implements Initializable {
         } catch (SQLException e) {
 
         }
+        initializeDB();
+        Konsultim.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
+
 
 
     }
@@ -233,8 +239,7 @@ public class Profesor implements Initializable {
                 choiceBox.getItems().add(resultSet.getString("Lenda"));
             } catch (SQLException e) {
                 printError(e + "");
-            }
-            finally {
+            } finally {
                 if (statement != null)
                     statement.close();
                 if (dbCon != null)
@@ -243,7 +248,8 @@ public class Profesor implements Initializable {
 
         }
     }
-    private void printConfirmation(String mesazhi){
+
+    private void printConfirmation(String mesazhi) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Sukses");
         alert.setContentText(mesazhi);
@@ -257,7 +263,7 @@ public class Profesor implements Initializable {
         return sql;
     }
 
-    private void clearInputs(){
+    private void clearInputs() {
         hour.clear();
         minutes.clear();
         eHene.setSelected(false);

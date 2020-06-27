@@ -162,11 +162,12 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <TableView prefHeight="257.0" prefWidth="700.0" stylesheets="@tabela_prof.css">
+                                    <TableView fx:id="tabelaPersonale" prefHeight="257.0" prefWidth="700.0" stylesheets="@orari.css">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Lenda" />
-                                        <TableColumn prefWidth="75.0" text="Koha" />
-                                          <TableColumn prefWidth="75.0" text="Salla" />
+                                        <TableColumn fx:id="kolonaLenda" prefWidth="75.0" text="Lenda" />
+                                        <TableColumn fx:id="kolonaKoha" prefWidth="75.0" text="Koha" />
+                                          <TableColumn fx:id="kolonaSalla" prefWidth="75.0" text="Salla" />
+                                          <TableColumn fx:id="kolonaDita" prefWidth="75.0" text="Dita" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
