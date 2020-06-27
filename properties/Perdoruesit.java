@@ -13,7 +13,7 @@ import static properties.Mesimdhenes.changeWidth;
 
 
 public class Perdoruesit extends baza{
-    private static int u_ID;
+    private  int u_ID;
     private String Email;
     private String Salt;
     private String Hash;
@@ -124,19 +124,20 @@ public class Perdoruesit extends baza{
     }
 
 
-    public static ObservableList<baza> fshijPerdoruesit(Connection dbcon) {
-        ObservableList <baza> list = FXCollections.observableArrayList();
+    public static void fshijPerdoruesit(TableView tabelaAdmin, Connection dbcon) {
+        Perdoruesit perdoruesit = (Perdoruesit) tabelaAdmin.getSelectionModel().getSelectedItem();
+
         try {
             String query="DELETE FROM Users WHERE u_ID=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
-            preparedStatement.setInt(1, u_ID);
+            preparedStatement.setInt(1, perdoruesit.getU_ID());
             preparedStatement.executeUpdate();
         } catch (SQLException ex){
             ex.printStackTrace();
 
         }
-        return list;
+
     }
 
 

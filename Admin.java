@@ -2,15 +2,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import properties.Lenda;
 import properties.Mesimdhenes;
 import properties.Perdoruesit;
 import properties.baza;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -112,20 +118,25 @@ public class Admin implements Initializable {
         event.getSource();
         if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
             Lenda.fshijLendet(tabelaAdmin, dbcon);
-            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
         }else if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
             Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
-            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
         }
         else {
-            Perdoruesit.fshijPerdoruesit(dbcon);
-            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
-
+            Perdoruesit.fshijPerdoruesit(tabelaAdmin, dbcon);
 
         }
+        tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
     }
 
-    public void shto(javafx.event.ActionEvent event){
+    public void shto(javafx.event.ActionEvent event) throws IOException {
+        Parent root;
+        root= FXMLLoader.load(getClass().getResource("add.fxml"));
+         Stage primaryStage=new Stage();
+        primaryStage.setTitle("add");
+        primaryStage.setScene(new Scene(root, 285, 502));
+        primaryStage.setResizable(false);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.show();
 
 
     }
