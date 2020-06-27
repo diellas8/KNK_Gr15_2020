@@ -232,3 +232,10 @@ VALUES
 
 
 
+INSERT INTO "main"."Users"
+("u_ID", "Email", "Salt", "Hash", "Statusi")
+VALUES (1, 'erisera@gmail.com', '94Y+Ux1G1AvDVlAhSjFmkQ==', 'g3Gx6BAWVF09z0jKFCbm804L3IJEODGbaSMgZKus66x2WzDOUUQ2TTjf0uyJklqRM5Z8kXc6VNmnN+ADi4fbwQ==', 2);
+
+
+
+
