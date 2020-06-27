@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import org.sqlite.SQLiteException;
 import properties.Lenda;
 import properties.Mesimdhenes;
 
@@ -126,8 +127,7 @@ public class Profesor implements Initializable {
             printError("Ju lutem caktoni sallen.");
 
         }
-//          else if (!eHene.isSelected() && !eMarte.isSelected() && !eMerkure.isSelected() && !eEnjte.isSelected() && !ePremte.isSelected()){
-//              printError("Ju lutem caktoni se paku nje dite per tu mbajtur konsultimi.");
+//
 //        }
         else {
             RadioButton selectedRadioButton = (RadioButton) salla.getSelectedToggle();
@@ -135,12 +135,19 @@ public class Profesor implements Initializable {
             int salle = Integer.parseInt(toogleGroupValue);
             String stringOra = hour.getText().replaceAll("\\s", "") + ":" + minutes.getText();
             String lenda = lendet.getValue();
-            String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Ora_m, Lenda) VALUES ("+ mesimdhenesi + ", "+ salle
-                    + ", '"+ stringOra+"', 'hehe', '"+ lenda+"')";
+            String dita = null;
+            try {
+                if(eHene.isSelected()) {
+                    String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Dita, Lenda) VALUES (" + mesimdhenesi + ", " + salle
+                            + ", '" + stringOra + "', '" + eHene.getText() + "', '" + lenda + "')";
+                    statement.executeUpdate(sql);
+                }
+            } catch (SQLiteException e){
+                printError("Salla eshte e rezervuar gjate asaj kohe. Ju lutem ndryshoni orarin.");
+            }
 
-            statement.executeQuery(sql);
-
-
+ //else if (!eHene.isSelected() && !eMarte.isSelected() && !eMerkure.isSelected() && !eEnjte.isSelected() && !ePremte.isSelected()){
+//              printError("Ju lutem caktoni se paku nje dite per tu mbajtur konsultimi.");
         }
     }
 

@@ -41,12 +41,12 @@ create table Orari (
 Mesimdhenesi INTEGER NOT NULL,
 Salla INTEGER NOT NULL CHECK(Salla IN (700, 701, 702, 703, 704, 705)) ,
 Ora TEXT NOT NULL ,
-Ora_m TEXT NOT NULL ,
+Dita TEXT NOT NULL ,
 Lenda TEXT NOT NULL,
 
 FOREIGN KEY (Mesimdhenesi) REFERENCES Mesimdhenesit(m_ID),
 FOREIGN KEY (Lenda) REFERENCES Lendet(Emri),
-PRIMARY  KEY (Salla, Ora)
+PRIMARY  KEY (Salla, Ora, Dita)
 );
 
 
