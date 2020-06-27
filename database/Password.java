@@ -77,6 +77,10 @@ public class Password {
         } catch (Exception e) {
             return  -2; // gabim db
         }
+        finally {
+            statement.close();
+            dbCon.close();
+        }
     }
 
     public static boolean correctPassword(String salt, String dbPassword, String password) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {

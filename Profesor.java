@@ -135,8 +135,9 @@ public class Profesor implements Initializable {
             int salle = Integer.parseInt(toogleGroupValue);
             String stringOra = hour.getText().replaceAll("\\s", "") + ":" + minutes.getText();
             String lenda = lendet.getValue();
-            String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Ora_m, Lenda) VALUES (%d, %d, '%s','%s', '%s')";
-            String.format(sql, mesimdhenesi, salle, stringOra, "hehe", lenda);
+            String sql = "INSERT INTO Orari(Mesimdhenesi, Salla, Ora, Ora_m, Lenda) VALUES ("+ mesimdhenesi + ", "+ salle
+                    + ", '"+ stringOra+"', 'hehe', '"+ lenda+"')";
+
             statement.executeQuery(sql);
 
 
