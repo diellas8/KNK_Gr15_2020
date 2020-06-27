@@ -73,7 +73,7 @@ public class Lenda extends baza{
     private static void changeName(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
         nje.setText("Lenda");
         dy.setText("Ligjeruesi");
-        tre.setText("Viti akademik");
+        tre.setText("Viti");
     }
 
     private static void changeVisibility(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {

@@ -97,7 +97,7 @@ public class Admin implements Initializable {
 
 
         }
-   }
+    }
 
 
     @Override
@@ -111,14 +111,14 @@ public class Admin implements Initializable {
     }
 
 
-  @FXML
-  void shto(ActionEvent event) {
-   }
+    @FXML
+    void shto(ActionEvent event) {
+    }
 
-   @FXML
-  void fshij(ActionEvent event) {
+    @FXML
+    void fshij(ActionEvent event) {
 
-   }
+    }
 
     public void fshij(javafx.event.ActionEvent actionEvent) {
     }
