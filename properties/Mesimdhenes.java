@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Mesimdhenes extends baza {
-    private static int m_id;
+    private int m_id;
     private String emri;
     private String mbiemri;
     private String email;
@@ -139,19 +139,19 @@ public class Mesimdhenes extends baza {
        return tableView;
    }
 
-    public static ObservableList<baza> fshijMesimdhenesit(Connection dbcon) {
-        ObservableList <baza> list = FXCollections.observableArrayList();
+    public static void fshijMesimdhenesit(TableView tabelaAdmin, Connection dbcon) {
+        Mesimdhenes mesimdhenes = (Mesimdhenes) tabelaAdmin.getSelectionModel().getSelectedItem();
         try {
             String query="DELETE FROM Mesimdhenesit WHERE m_ID=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
-            preparedStatement.setInt(1, m_id);
+            preparedStatement.setInt(1, mesimdhenes.getM_id());
             preparedStatement.executeUpdate();
         } catch (SQLException ex){
             ex.printStackTrace();
 
         }
-        return list;
+
     }
 
 

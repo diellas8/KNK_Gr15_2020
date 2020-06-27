@@ -110,12 +110,19 @@ public class Admin implements Initializable {
 
     public void fshij(javafx.event.ActionEvent event){
         event.getSource();
-        Lenda.fshijLendet(tabelaAdmin, dbcon);
-        tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
-        Mesimdhenes.fshijMesimdhenesit(dbcon);
-        Perdoruesit.fshijPerdoruesit(dbcon);
+        if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
+            Lenda.fshijLendet(tabelaAdmin, dbcon);
+            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
+        }else if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
+            Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
+            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
+        }
+        else {
+            Perdoruesit.fshijPerdoruesit(dbcon);
+            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
 
 
+        }
     }
 
     public void shto(javafx.event.ActionEvent event){
