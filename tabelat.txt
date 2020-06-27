@@ -3,7 +3,6 @@ sqlite3 menaxhimi_konsultimeve.db
 create table Lendet (
 Lenda TEXT PRIMARY KEY ,
 Profesori INTEGER NOT NULL,
-Asistenti INTEGER NOT NULL,
 Viti INTEGER NOT NULL CHECK (Viti IN (1, 2, 3)),
 FOREIGN KEY (Profesori) REFERENCES Mesimdhenesit (m_ID),
 FOREIGN KEY (Asistenti) REFERENCES Mesimdhenesit (m_ID)

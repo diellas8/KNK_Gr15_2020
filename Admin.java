@@ -1,5 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,7 +11,6 @@ import properties.Mesimdhenes;
 import properties.Perdoruesit;
 import properties.baza;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -68,7 +68,7 @@ public class Admin implements Initializable {
     private Button addBtn;
 
     @FXML
-    private Button deleteBtn;
+    private Button deleteBtn ;
 
 
 
@@ -94,11 +94,8 @@ public class Admin implements Initializable {
             Mbiemri.setVisible(false);
             Email.setVisible(false);
 
-
-
         }
-   }
-
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,20 +107,17 @@ public class Admin implements Initializable {
 
     }
 
+    public void fshij(javafx.event.ActionEvent event){
+        event.getSource();
+        Lenda.fshijLendet(dbcon);
+        tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
+        Mesimdhenes.fshijMesimdhenesit(dbcon);
 
-  @FXML
-  void shto(ActionEvent event) {
-   }
 
-   @FXML
-  void fshij(ActionEvent event) {
-
-   }
-
-    public void fshij(javafx.event.ActionEvent actionEvent) {
     }
 
-    public void shto(javafx.event.ActionEvent actionEvent) {
-    }
+    public void shto(javafx.event.ActionEvent event){
 
+
+    }
 }
