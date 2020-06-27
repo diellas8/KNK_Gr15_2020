@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 
 public class Lenda extends baza{
-    private static String Lenda;
+    private  String Lenda;
     private String Profesoret;
     private int Viti;
     public Lenda(String lenda, String profesori, int viti){
@@ -97,19 +97,19 @@ public class Lenda extends baza{
         return list;
     }
 
-    public static ObservableList<baza> fshijLendet(Connection dbcon) {
-        ObservableList <baza> list = FXCollections.observableArrayList();
+    public static void fshijLendet(TableView tabelaAdmin,Connection dbcon) {
         try {
+            Lenda lenda = (Lenda) tabelaAdmin.getSelectionModel().getSelectedItem();
             String query="DELETE FROM Lendet WHERE Lenda=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
-            preparedStatement.setString(1, Lenda);
+            preparedStatement.setString(1, lenda.getLenda());
             preparedStatement.executeUpdate();
         } catch (SQLException ex){
             ex.printStackTrace();
 
         }
-        return list;
+
     }
 
 

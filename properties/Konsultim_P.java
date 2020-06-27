@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Konsultim extends baza{
+public class Konsultim_P extends baza{
 
     private int mesimdhenesi;
     private  int salla;
@@ -19,7 +19,7 @@ public class Konsultim extends baza{
     private String dita;
     private String lenda;
 
-    public Konsultim(String ora, String dita, String lenda, int salla){
+    public Konsultim_P(String ora, String dita, String lenda, int salla){
         this.ora = ora;
         this.dita = dita;
         this.lenda = lenda;
@@ -46,7 +46,7 @@ public class Konsultim extends baza{
         return lenda;
     }
 
-    public Konsultim(int mesimdhenesi, int salla, String ora, String dita, String lenda) {
+    public Konsultim_P(int mesimdhenesi, int salla, String ora, String dita, String lenda) {
         this.mesimdhenesi = mesimdhenesi;
         this.salla = salla;
         this.ora = ora;
@@ -65,7 +65,7 @@ public class Konsultim extends baza{
             String Dita = res.getString("Dita");
             String Ora= res.getString("Ora");
             int Salla  = res.getInt("Salla");
-            list.add(new Konsultim( Ora,Dita,Lenda, Salla));
+            list.add(new Konsultim_P( Ora,Dita,Lenda, Salla));
         }
         return list;
     }

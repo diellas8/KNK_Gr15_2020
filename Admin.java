@@ -109,7 +109,7 @@ public class Admin implements Initializable {
 
     public void fshij(javafx.event.ActionEvent event){
         event.getSource();
-        Lenda.fshijLendet(dbcon);
+        Lenda.fshijLendet(tabelaAdmin, dbcon);
         tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
         Mesimdhenes.fshijMesimdhenesit(dbcon);
         Perdoruesit.fshijPerdoruesit(dbcon);

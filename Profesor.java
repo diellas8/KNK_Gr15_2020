@@ -4,7 +4,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import org.sqlite.SQLiteException;
-import properties.Konsultim;
+import properties.Konsultim_P;
+import properties.baza;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,19 +33,19 @@ public class Profesor implements Initializable {
     private ToggleGroup salla;
 
     @FXML
-    private final CheckBox eHene = new CheckBox("E hene");
+    private  CheckBox eHene = new CheckBox("E hene");
 
     @FXML
-    private final CheckBox eMarte = new CheckBox("E marte");
+    private  CheckBox eMarte = new CheckBox("E marte");
 
     @FXML
-    private final CheckBox eMerkure = new CheckBox("E merkure");
+    private  CheckBox eMerkure = new CheckBox("E merkure");
 
     @FXML
-    private final CheckBox eEnjte = new CheckBox("E enjte");
+    private  CheckBox eEnjte = new CheckBox("E enjte");
 
     @FXML
-    private final CheckBox ePremte = new CheckBox("E premte");
+    private  CheckBox ePremte = new CheckBox("E premte");
 
     @FXML
     private Button largo;
@@ -53,7 +54,7 @@ public class Profesor implements Initializable {
     private ChoiceBox<String> lendet;
 
     @FXML
-    private TableView<?> tabelaPersonale;
+    private TableView<baza> tabelaPersonale;
 
     @FXML
     private TableColumn<?, ?> kolonaLenda;
@@ -216,7 +217,7 @@ public class Profesor implements Initializable {
 
         }
         initializeDB();
-        Konsultim.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
+        Konsultim_P.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
 
 
 
