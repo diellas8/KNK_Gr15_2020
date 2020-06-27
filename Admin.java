@@ -112,6 +112,7 @@ public class Admin implements Initializable {
         Lenda.fshijLendet(dbcon);
         tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
         Mesimdhenes.fshijMesimdhenesit(dbcon);
+        Perdoruesit.fshijPerdoruesit(dbcon);
 
 
     }
