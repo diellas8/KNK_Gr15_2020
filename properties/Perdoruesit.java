@@ -1,22 +1,19 @@
 package properties;
 
-import java.sql.Connection;
+import java.sql.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import static properties.Mesimdhenes.changeVisibility;
 import static properties.Mesimdhenes.changeWidth;
 
 
 public class Perdoruesit extends baza{
-    private int u_ID;
+    private static int u_ID;
     private String Email;
     private String Salt;
     private String Hash;
@@ -127,7 +124,20 @@ public class Perdoruesit extends baza{
     }
 
 
+    public static ObservableList<baza> fshijPerdoruesit(Connection dbcon) {
+        ObservableList <baza> list = FXCollections.observableArrayList();
+        try {
+            String query="DELETE FROM Users WHERE u_ID=?";
+            PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
+            preparedStatement.setInt(1, u_ID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+
+        }
+        return list;
+    }
 
 
 
