@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 public class Login {
 
 private Parent root;
@@ -50,8 +48,8 @@ private Stage primaryStage= new Stage();
             case 2:{
                 Profesor.saveEmail(email.getText());
                 root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
-                primaryStage.setTitle("Profesor");
-                primaryStage.setScene(new Scene(root, 700, 550));
+                primaryStage.setTitle("Orari i konsultimeve");
+                primaryStage.setScene(new Scene(root, 700, 50));
                 primaryStage.setResizable(false);
                 primaryStage.show();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -59,8 +57,8 @@ private Stage primaryStage= new Stage();
 
             }
             case 3: {
-                root = FXMLLoader.load(getClass().getResource("user.fxml"));
-                primaryStage.setTitle("User");
+                root = FXMLLoader.load(getClass().getResource("student.fxml"));
+                primaryStage.setTitle("Orari i konsultimeve");
                 primaryStage.setScene(new Scene(root, 700, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
@@ -73,7 +71,6 @@ private Stage primaryStage= new Stage();
                 alert.setHeaderText(null);
                 alert.setContentText("Email or password is wrong...");
                 alert.showAndWait();
-                email.clear();
                 password.clear();
             }
 

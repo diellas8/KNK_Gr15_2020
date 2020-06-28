@@ -28,7 +28,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Profesor">
    <children>
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+      <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
         <tabs>
           <Tab text="Shto termin">
             <content>
@@ -142,7 +142,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Largo termin">
+          <Tab fx:id="oraripTab" text="Largo termin">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -186,16 +186,17 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Orari i pergjithshem">
+            <Tab fx:id="orariTab" text="Orari i pergjithshem">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="10.0" layoutY="10.0" prefHeight="471.0" prefWidth="700.0" stylesheets="@orari.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tabelaPergjithshme" layoutX="10.0" layoutY="10.0" prefHeight="471.0" prefWidth="700.0" stylesheets="@orari.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="Mesimdhenesi" />
-                              <TableColumn prefWidth="75.0" text="Lenda" />
-                              <TableColumn prefWidth="75.0" text="Koha" />
-                              <TableColumn prefWidth="75.0" text="Salla" />
+                              <TableColumn fx:id="kolonaMesimdhenesi" prefWidth="75.0" text="Mesimdhenesi" />
+                              <TableColumn fx:id="KolonaLendaP" prefWidth="75.0" text="Lenda" />
+                              <TableColumn fx:id="KolonaDitaP" prefWidth="75.0" text="Dita" />
+                              <TableColumn fx:id="KolonaKohaP" prefWidth="75.0" text="Ora" />
+                              <TableColumn fx:id="KolonaSallaP" prefWidth="75.0" text="Salla" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

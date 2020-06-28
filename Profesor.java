@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -5,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import org.sqlite.SQLiteException;
 import properties.Konsultim_P;
+import properties.Lenda;
 import properties.baza;
 
 import java.io.IOException;
@@ -22,6 +25,15 @@ public class Profesor implements Initializable {
     private static String email;
     private static int mesimdhenesi;
 
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab oraripTab;
+
+    @FXML
+    private Tab orariTab;
 
     @FXML
     private TextField hour;
@@ -69,7 +81,7 @@ public class Profesor implements Initializable {
     private TableColumn<?, ?> kolonaDita;
 
     @FXML
-    private TableView<?> tabelaPergjithshme;
+    private TableView<baza> tabelaPergjithshme;
 
     @FXML
     private TableColumn<?, ?> kolonaMesimdhenesi;
@@ -81,12 +93,18 @@ public class Profesor implements Initializable {
     private TableColumn<?, ?> KolonaKohaP;
 
     @FXML
+    private TableColumn<?, ?> KolonaDitaP;
+
+    @FXML
     private TableColumn<?, ?> KolonaSallaP;
+
     private String stringOra = "";
     private int salle;
 
     public Profesor() {
     }
+
+
 
     public static void saveEmail(String em) {
         email = em;
@@ -134,7 +152,7 @@ public class Profesor implements Initializable {
 
     @FXML
     void largoKonsultim(ActionEvent event) throws IOException {
-
+        fshijKonsultim();
     }
 
     @FXML
@@ -146,13 +164,12 @@ public class Profesor implements Initializable {
             ora = Integer.parseInt(hour.getText());
             minuta = Integer.parseInt(minutes.getText());
         } catch (Exception e) {
-            printError("Ju lutem shkruani nje ore valide!");
+
         }
         if (ora > 18 || ora < 8 || minuta < 0 || minuta > 60) {
             printError("Konsultimet nuk mund te mbahen me heret se ne oren 8:00 ose me vone se ne oren 19:00.");
         } else if (salla.getSelectedToggle() == null) {
             printError("Ju lutem caktoni sallen.");
-
         }
 //
 //        }
@@ -193,13 +210,18 @@ public class Profesor implements Initializable {
                 }
                 if (dita.equals("")) {
                     printError("Ju lutem zgjedhni se paku nje dite kur doni te mbani konsultime.");
+
                 }
-                clearInputs();
-                printConfirmation("Orari i konsultimeve u perditesua.");
+                if(!dita.equals("")) {
+                    printInformation("Orari i konsultimeve u perditesua.");
+                    clearInputs();
+                }
+
 
             } catch (SQLiteException e) {
                 printError("Salla eshte e rezervuar gjate asaj kohe. Ju lutem ndryshoni orarin.");
             } finally {
+
                 statement.close();
                 dbCon.close();
             }
@@ -216,8 +238,8 @@ public class Profesor implements Initializable {
         } catch (SQLException e) {
 
         }
-        initializeDB();
-        Konsultim_P.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
+        setOraripTab();
+        setOrariTab();
 
 
 
@@ -229,7 +251,7 @@ public class Profesor implements Initializable {
 
         initializeDB();
         ResultSet resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {
+        while (true) {
             try {
                 if (!resultSet.next()) break;
             } catch (SQLException throwables) {
@@ -240,18 +262,18 @@ public class Profesor implements Initializable {
                 choiceBox.getItems().add(resultSet.getString("Lenda"));
             } catch (SQLException e) {
                 printError(e + "");
-            } finally {
-                if (statement != null)
-                    statement.close();
-                if (dbCon != null)
-                    dbCon.close();
             }
+            }
+        if(!statement.isClosed() || statement==null)
+            statement.close();
+        if(!dbCon.isClosed() || dbCon == null)
+            dbCon.close();
 
         }
-    }
 
-    private void printConfirmation(String mesazhi) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+
+    private void printInformation(String mesazhi) {
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Sukses");
         alert.setContentText(mesazhi);
         alert.setHeaderText(null);
@@ -275,6 +297,41 @@ public class Profesor implements Initializable {
         salla.getSelectedToggle().setSelected(false);
 
     }
+    private void setOraripTab(){
+        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if(newTab == oraripTab) {
+                initializeDB();
+                Konsultim_P.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
+            }
 
+        });
+    }
+    private void setOrariTab(){
+        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if(newTab == orariTab) {
+                initializeDB();
+                Konsultim_P.startTable(dbCon,statement,tabelaPergjithshme, kolonaMesimdhenesi, KolonaLendaP, KolonaDitaP, KolonaKohaP, KolonaSallaP);
+            }
+
+        });
+    }
+    public  void fshijKonsultim() {
+        try {
+            initializeDB();
+            Konsultim_P konsultim_p = (Konsultim_P) tabelaPersonale.getSelectionModel().getSelectedItem();
+            String query="DELETE FROM Orari WHERE Lenda=? AND Ora = ? AND Salla = ? AND Dita = ?";
+            PreparedStatement preparedStatement = dbCon.prepareStatement(query);
+            preparedStatement.setString(1, konsultim_p.getLenda());
+            preparedStatement.setString(2, konsultim_p.getOra());
+            preparedStatement.setInt(3, konsultim_p.getSalla());
+            preparedStatement.setString(4, konsultim_p.getDita());
+            preparedStatement.executeUpdate();
+                tabelaPersonale.getItems().removeAll(tabelaPersonale.getSelectionModel().getSelectedItem());
+        } catch (SQLException ex){
+            ex.printStackTrace();
+
+        }
+
+    }
 
 }

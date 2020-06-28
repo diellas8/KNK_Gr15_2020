@@ -147,6 +147,7 @@ public class Mesimdhenes extends baza {
 
             preparedStatement.setInt(1, mesimdhenes.getM_id());
             preparedStatement.executeUpdate();
+
         } catch (SQLException ex){
             ex.printStackTrace();
 
