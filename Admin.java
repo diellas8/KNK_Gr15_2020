@@ -1,19 +1,15 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import properties.Lenda;
 import properties.Mesimdhenes;
-import properties.Perdoruesit;
+import properties.Student;
 import properties.baza;
 
 import java.io.IOException;
@@ -80,24 +76,23 @@ public class Admin implements Initializable {
 
 
     @FXML
-    public void handleClicks(javafx.event.ActionEvent event) {
+    public void handleClicks(javafx.event.ActionEvent event) throws Exception {
         if (event.getSource() == btnStudentet) {
-            tabelaAdmin.getItems().clear();
+
             lbStatus.setText("Perdoruesit");
-            Perdoruesit.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
+            Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
+            Roli.setVisible(false);
 
 
 
         } else if (event.getSource() == btnProfesor) {
             lbStatus.setText("Profesoret");
-            tabelaAdmin.getItems().clear();
-            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli);
+            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
 
 
         } else if (event.getSource() == btnLendet) {
-            tabelaAdmin.getItems().clear();
             lbStatus.setText("Lendet");
-            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli,textInput);
             Mbiemri.setVisible(false);
             Email.setVisible(false);
 
@@ -107,7 +102,11 @@ public class Admin implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbStatus.setText("Lendet");
-        Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli);
+        try {
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Mbiemri.setVisible(false);
         Email.setVisible(false);
 
@@ -115,6 +114,7 @@ public class Admin implements Initializable {
     }
 
     public void fshij(javafx.event.ActionEvent event){
+        tabelaAdmin.setEditable(true);
         event.getSource();
         if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
             Lenda.fshijLendet(tabelaAdmin, dbcon);
@@ -122,10 +122,16 @@ public class Admin implements Initializable {
             Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
         }
         else {
-            Perdoruesit.fshijPerdoruesit(tabelaAdmin, dbcon);
+            Student.fshijPerdoruesit(tabelaAdmin, dbcon);
 
         }
-        tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
+        try {
+            System.out.println(tabelaAdmin.getSelectionModel().getSelectedItem());
+            tabelaAdmin.getItems().remove(tabelaAdmin.getSelectionModel().getSelectedItem());
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void shto(javafx.event.ActionEvent event) throws IOException {
