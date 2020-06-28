@@ -78,7 +78,7 @@ public class Register extends Pane{
 		
 		
 		vbox.getChildren().addAll(txt, grid);
-		// po m'doket per grid s'ki nevoje per getchildren
+		
 		getChildren().add(vbox);
 		}
 		
