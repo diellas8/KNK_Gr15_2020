@@ -124,14 +124,10 @@ public class Admin implements Initializable {
         }
         else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Student) {
             Student.fshijPerdoruesit(tabelaAdmin, dbcon);
-        }
-        try {
-            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
-
-        } catch (Exception e){
-            System.out.println(e);
+            Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
         }
     }
+
 
     public void shto(javafx.event.ActionEvent event) throws IOException {
         Parent root;
