@@ -138,6 +138,19 @@ public class Admin implements Initializable {
         primaryStage.setResizable(false);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.show();
+        primaryStage.setOnHidden(windowEvent ->{
+            Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
+            try {
+                Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
+
+
+
+
+        });
 
 
     }

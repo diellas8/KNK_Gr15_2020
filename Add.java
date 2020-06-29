@@ -2,6 +2,7 @@
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.scene.control.*;
+    import javafx.stage.Stage;
     import org.sqlite.SQLiteException;
     import properties.Lenda;
 
@@ -66,12 +67,13 @@
                 ((PreparedStatement) statement).setInt(2, prff);
                 ((PreparedStatement) statement).setInt(3, viti);
                 ((PreparedStatement) statement).executeUpdate();
-
+                Stage stage = (Stage) Lenda.getScene().getWindow();
+                stage.close();
+                printInformation("Lenda u shtua");
 
             }
           catch(SQLException ex){
-                ex.printStackTrace();
-
+            printError("Lenda eshte e regjistruar");
             }
 
 
@@ -101,10 +103,12 @@
                 ((PreparedStatement) statement).setInt(4, statusi);
 
                 ((PreparedStatement) statement).executeUpdate();
-
+                Stage stage = (Stage) Lenda.getScene().getWindow();
+                stage.close();
+                printInformation("Mesimdhenesi u shtua");
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                printError("Mesimdhenesi eshte i regjistruar");
 
             }
 
@@ -112,6 +116,25 @@
 
         @FXML
         void shtuoStudent(ActionEvent event) {
+            String emri = sEmri.getText();
+            String mbiemri = sMbiemri.getText();
+            String email = sEmail.getText();
+            initializeDB();
+            try {
+                String sql = "insert into Studentet"
+                        + " (Emri, Mbiemri, Email)" + " values (?, ?, ?)";
+                statement = dbCon.prepareStatement(sql);
+                ((PreparedStatement) statement).setString(1, emri);
+                ((PreparedStatement) statement).setString(2, mbiemri);
+                ((PreparedStatement) statement).setString(3, email);
+                ((PreparedStatement) statement).executeUpdate();
+                Stage stage = (Stage) Lenda.getScene().getWindow();
+                stage.close();
+                printInformation("Studenti u shtua.");
+            } catch (SQLException ex) {
+                printError("Studenti eshte i regjistruar.");
+
+            }
 
 
         }
@@ -136,6 +159,16 @@
 //        public static String shtimi(){
 //
 //        }
+private void printInformation(String mesazhi) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Sukses");
+    alert.setContentText(mesazhi);
+    alert.setHeaderText(null);
+    alert.showAndWait();
+}
+
+
+
 
     }
 
