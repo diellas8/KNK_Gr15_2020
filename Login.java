@@ -49,7 +49,7 @@ private Stage primaryStage= new Stage();
                 Profesor.saveEmail(email.getText());
                 root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
                 primaryStage.setTitle("Orari i konsultimeve");
-                primaryStage.setScene(new Scene(root, 700, 50));
+                primaryStage.setScene(new Scene(root, 700, 500));
                 primaryStage.setResizable(false);
                 primaryStage.show();
                 ((Node) (event.getSource())).getScene().getWindow().hide();

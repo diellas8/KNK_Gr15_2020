@@ -79,7 +79,7 @@ public class Admin implements Initializable {
     public void handleClicks(javafx.event.ActionEvent event) throws Exception {
         if (event.getSource() == btnStudentet) {
 
-            lbStatus.setText("Perdoruesit");
+            lbStatus.setText("Studentet");
             Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
             Roli.setVisible(false);
 
@@ -113,21 +113,20 @@ public class Admin implements Initializable {
 
     }
 
-    public void fshij(javafx.event.ActionEvent event){
+    public void fshij(javafx.event.ActionEvent event) throws Exception {
         tabelaAdmin.setEditable(true);
         event.getSource();
         if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
             Lenda.fshijLendet(tabelaAdmin, dbcon);
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
         }else if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
             Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
         }
-        else {
+        else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Student) {
             Student.fshijPerdoruesit(tabelaAdmin, dbcon);
-
         }
         try {
-            System.out.println(tabelaAdmin.getSelectionModel().getSelectedItem());
-            tabelaAdmin.getItems().remove(tabelaAdmin.getSelectionModel().getSelectedItem());
+            tabelaAdmin.getItems().removeAll(tabelaAdmin.getSelectionModel().getSelectedItem());
 
         } catch (Exception e){
             System.out.println(e);

@@ -54,6 +54,7 @@ public class Lenda extends baza {
             }
         });
         try {
+
             FilteredList<Lenda> filteredData = new FilteredList<Lenda>(getLendet(dbcon), b -> true);
 
             filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -76,7 +77,8 @@ public class Lenda extends baza {
                 });
             });
 
-            SortedList<baza> sortedData = new SortedList<>(filteredData);
+            SortedList<Lenda> sortedData = new SortedList<>(filteredData);
+
 
 
             sortedData.comparatorProperty().bind(tabelaAdmin.comparatorProperty());
@@ -134,6 +136,7 @@ public class Lenda extends baza {
 
     public static void fshijLendet(TableView tabelaAdmin,Connection dbcon) {
         try {
+
             Lenda lenda = (Lenda) tabelaAdmin.getSelectionModel().getSelectedItem();
             String query="DELETE FROM Lendet WHERE Lenda=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);

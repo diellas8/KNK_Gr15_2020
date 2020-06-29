@@ -81,7 +81,7 @@ public class Student extends baza{
                 });
             });
 
-            SortedList<baza> sortedData = new SortedList<>(filteredData);
+            SortedList<Student> sortedData = new SortedList<>(filteredData);
 
 
             sortedData.comparatorProperty().bind(tabelaAdmin.comparatorProperty());
@@ -154,7 +154,6 @@ public class Student extends baza{
         try {
             String query="DELETE FROM Studentet WHERE s_ID=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);
-            System.out.println(student.getS_ID());
             preparedStatement.setInt(1, student.getS_ID());
             preparedStatement.executeUpdate();
         } catch (SQLException ex){
