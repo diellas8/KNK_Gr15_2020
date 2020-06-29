@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Add">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Add">
   <tabs>
     <Tab text="Shto Lende">
       <content>
@@ -28,13 +28,28 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <RadioButton layoutX="106.0" layoutY="258.0" mnemonicParsing="false" text="Viti I" AnchorPane.leftAnchor="106.0">
+                  <RadioButton layoutX="161.0" layoutY="259.0" mnemonicParsing="false" text="1" AnchorPane.leftAnchor="161.0">
                      <toggleGroup>
                         <ToggleGroup fx:id="Viti" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="105.0" layoutY="293.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Viti II" toggleGroup="$Viti" AnchorPane.leftAnchor="106.0" />
-                  <RadioButton layoutX="106.0" layoutY="333.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="58.0" text="Viti III" toggleGroup="$Viti" AnchorPane.leftAnchor="106.0" />
+                  <RadioButton layoutX="105.0" layoutY="293.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="2" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0" />
+                  <RadioButton layoutX="106.0" layoutY="333.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="58.0" text="3" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0" />
+                  <Label layoutX="88.0" layoutY="258.0" text="Viti i pare">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="88.0" layoutY="299.0" text="Viti i dyte">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="88.0" layoutY="341.0" text="Viti i trete">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -45,16 +60,26 @@
                   <TextField fx:id="mEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Emri..." />
                   <TextField fx:id="mMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="Mbiemri..." />
                   <TextField fx:id="mEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0" prefWidth="184.0" promptText="Email.." />
-                  <RadioButton layoutX="104.0" layoutY="311.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" text="Profesor">
+                  <RadioButton layoutX="104.0" layoutY="311.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="41.0" text="1">
                      <toggleGroup>
                         <ToggleGroup fx:id="Statusi" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="104.0" layoutY="350.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="77.0" text="Asistent" toggleGroup="$Statusi" />
+                  <RadioButton layoutX="104.0" layoutY="350.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" text="2" toggleGroup="$Statusi" />
                   <Button layoutX="92.0" layoutY="400.0" mnemonicParsing="false" onAction="#shtoMesimdhenes" prefHeight="36.0" prefWidth="100.0" text="Shto" />
                   <Label layoutX="80.0" layoutY="34.0" prefHeight="31.0" prefWidth="126.0" text="Mesimdhenes">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="146.0" layoutY="316.0" prefHeight="17.0" prefWidth="60.0" text="Profesor">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="145.0" layoutY="354.0" text="Asistent">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
