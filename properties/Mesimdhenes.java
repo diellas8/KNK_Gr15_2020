@@ -2,9 +2,12 @@ package properties;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -50,7 +53,7 @@ public class Mesimdhenes extends baza {
     }
 
     public static void startColumn(Connection dbcon, TableView tabelaAdmin,TableColumn<?,?> first, TableColumn<?,?>second,
-                              TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth){
+                              TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth, TextField filterField){
         changeVisibility(first, second, third, fourth, fifth);
         changeWidth(tabelaAdmin,first, second, third, fourth, fifth);
         changeName(first, second, third, fourth, fifth);
@@ -65,8 +68,37 @@ public class Mesimdhenes extends baza {
                 // setLendetToUI((Lenda)_new);
             }
         });
-        try{
-             tabelaAdmin.setItems(getMesimdhenesit(dbcon));
+        try {
+            FilteredList<Mesimdhenes> filteredData = new FilteredList<>(getMesimdhenesit(dbcon), b -> true);
+            filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(mesimdhenes -> {
+
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (mesimdhenes.getEmri().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (mesimdhenes.getMbiemri().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }else if (mesimdhenes.getStatusi().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (String.valueOf(mesimdhenes.getEmail()).contains(lowerCaseFilter))
+                        return true;
+                    else
+                        return false;
+                });
+            });
+
+            SortedList<baza> sortedData = new SortedList<>(filteredData);
+
+
+            sortedData.comparatorProperty().bind(tabelaAdmin.comparatorProperty());
+
+            tabelaAdmin.setItems(sortedData);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,8 +142,8 @@ public class Mesimdhenes extends baza {
 
 
 
-    private static ObservableList<baza> getMesimdhenesit(Connection dbcon) throws Exception{
-       ObservableList <baza> list = FXCollections.observableArrayList();
+    private static ObservableList<Mesimdhenes> getMesimdhenesit(Connection dbcon) throws Exception{
+       ObservableList <Mesimdhenes> list = FXCollections.observableArrayList();
         Statement stmt = dbcon.createStatement();
        String query= "SELECT * from Mesimdhenesit";
         ResultSet res = stmt.executeQuery(query);
