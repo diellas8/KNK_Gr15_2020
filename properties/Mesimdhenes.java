@@ -92,7 +92,7 @@ public class Mesimdhenes extends baza {
                 });
             });
 
-            SortedList<baza> sortedData = new SortedList<>(filteredData);
+            SortedList<Mesimdhenes> sortedData = new SortedList<>(filteredData);
 
 
             sortedData.comparatorProperty().bind(tabelaAdmin.comparatorProperty());
