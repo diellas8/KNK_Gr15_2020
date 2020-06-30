@@ -18,6 +18,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -93,7 +94,7 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Button layoutX="353.0" layoutY="401.0" mnemonicParsing="false" onAction="#ruajKonsultim" prefHeight="31.0" prefWidth="282.0" style="-fx-border-radius: 5em; -fx-border-color: #a1b8f7; -fx-background-radius: 5em; -fx-background-color: #ffffff;" text="Ruaj" />
+                        <Button layoutX="353.0" layoutY="401.0" onAction="#ruajKonsultim" prefHeight="31.0" prefWidth="282.0" style="-fx-border-radius: 5em; -fx-border-color: #a1b8f7; -fx-background-radius: 5em; -fx-background-color: #ffffff;" text="_Ruaj" />
                         <RadioButton layoutX="407.0" layoutY="259.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="700">
                            <font>
                               <Font size="11.0" />
@@ -157,7 +158,7 @@
                                   <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="largo" mnemonicParsing="false" onAction="#largoKonsultim" prefHeight="32.0" prefWidth="670.0" style="-fx-background-radius: 5em; -fx-border-radius: 5em; -fx-background-color: #ffffff; -fx-border-color: #6485de;" text="Largo" GridPane.rowIndex="1">
+                                    <Button fx:id="largo" onAction="#largoKonsultim" prefHeight="32.0" prefWidth="670.0" style="-fx-background-radius: 5em; -fx-border-radius: 5em; -fx-background-color: #ffffff; -fx-border-color: #6485de;" text="_Largo" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -208,28 +209,36 @@
             </Tab>
         </tabs>
       </TabPane>
-      <MenuBar layoutX="4.0" layoutY="2.0" prefHeight="25.0" prefWidth="693.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </MenuBar>
       <ButtonBar layoutX="362.0" layoutY="271.0" prefHeight="40.0" prefWidth="200.0" />
+      <MenuBar prefHeight="26.0" prefWidth="782.0" styleClass="navbar">
+         <menus>
+            <Menu mnemonicParsing="false" text="Dokumenti">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Mbylle">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ndihme">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+         </menus>
+         <padding>
+            <Insets top="1.0" />
+         </padding>
+      </MenuBar>
    </children>
 </AnchorPane>

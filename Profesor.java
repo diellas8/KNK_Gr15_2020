@@ -2,9 +2,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.sqlite.SQLiteException;
 import properties.Konsultim_P;
 import properties.Lenda;
@@ -102,6 +108,43 @@ public class Profesor implements Initializable {
     private int salle;
 
     public Profesor() {
+    }
+
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Orari i konsultimeve");
+        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        Stage stage = (Stage) tabelaPersonale.getScene().getWindow();
+        stage.close();
+
+    }
+
+    @FXML
+    void rrethNesh(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root,250,150);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Rreth Nesh");
+        primaryStage.show();
+
+
+
+    }
+
+
+    @FXML
+    void exit(ActionEvent event) {
+        ((Stage) tabelaPersonale.getScene().getWindow()).close();
     }
 
 

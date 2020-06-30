@@ -1,10 +1,18 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import properties.Konsultim_P;
 import properties.baza;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,6 +43,43 @@ public class Student implements Initializable {
     private Connection dbCon;
     private Statement statement;
 
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Orari i konsultimeve");
+        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        Stage stage = (Stage) tabela.getScene().getWindow();
+        stage.close();
+
+    }
+
+    @FXML
+    void rrethNesh(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root,250,150);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Rreth Nesh");
+        primaryStage.show();
+
+
+
+    }
+
+
+    @FXML
+    void exit(ActionEvent event) {
+        ((Stage) tabela.getScene().getWindow()).close();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeDB();
@@ -51,4 +96,5 @@ public class Student implements Initializable {
 
         }
     }
+
 }

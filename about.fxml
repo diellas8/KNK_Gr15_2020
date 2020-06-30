@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="150.0" prefWidth="249.0" style="-fx-background-color: #a1b8f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="124.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/logo_i.png" />
+         </image>
+         <HBox.margin>
+            <Insets left="10.0" top="25.0" />
+         </HBox.margin>
+      </ImageView>
+      <VBox prefHeight="150.0" prefWidth="152.0">
+         <children>
+            <Label text="Konsultimet">
+               <VBox.margin>
+                  <Insets left="30.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="App Version 1.0.1">
+               <VBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Relased: June 2020">
+               <VBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</HBox>

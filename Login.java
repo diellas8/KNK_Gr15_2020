@@ -5,7 +5,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class Login {
 
@@ -27,6 +31,35 @@ private Stage primaryStage= new Stage();
     @FXML
     void changeLang(ActionEvent event) {
 
+    }
+
+    @FXML
+    void logOut(ActionEvent event)  {
+
+
+    }
+
+    @FXML
+    void rrethNesh(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root,250,150);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Rreth Nesh");
+        primaryStage.show();
+
+
+
+    }
+
+
+    @FXML
+    void exit(ActionEvent event) {
+        ((Stage) email.getScene().getWindow()).close();
     }
 
     @FXML

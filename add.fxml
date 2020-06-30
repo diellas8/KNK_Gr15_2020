@@ -20,7 +20,7 @@
                      <children>
                         <TextField fx:id="Lenda" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Lenda..." />
                         <TextField fx:id="idMesimdhenesit" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="ID e mesimdhenesit..." />
-                        <Button layoutX="92.0" layoutY="400.0" mnemonicParsing="false" onAction="#shtoLende" prefHeight="36.0" prefWidth="100.0" text="Shto" />
+                        <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoLende" prefHeight="36.0" prefWidth="100.0" text="Shto" />
                         <Label layoutX="104.0" layoutY="33.0" prefHeight="31.0" prefWidth="126.0" text="Lenda">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
@@ -66,7 +66,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton layoutX="104.0" layoutY="350.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" text="2" toggleGroup="$Statusi" />
-                  <Button layoutX="92.0" layoutY="400.0" mnemonicParsing="false" onAction="#shtoMesimdhenes" prefHeight="36.0" prefWidth="100.0" text="Shto" />
+                  <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoMesimdhenes" prefHeight="36.0" prefWidth="100.0" text="Shto" />
                   <Label layoutX="80.0" layoutY="34.0" prefHeight="31.0" prefWidth="126.0" text="Mesimdhenes">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
@@ -101,7 +101,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="94.0" layoutY="327.0" mnemonicParsing="false" onAction="#shtuoStudent" prefHeight="36.0" prefWidth="100.0" text="Shto" />
+                  <Button defaultButton="true" layoutX="94.0" layoutY="327.0" onAction="#shtuoStudent" prefHeight="36.0" prefWidth="100.0" text="Shto" />
                </children>
             </AnchorPane>
         </content>

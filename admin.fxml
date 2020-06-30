@@ -4,11 +4,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -33,7 +37,7 @@
                         <Insets left="80.0" top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="btnProfesor" blendMode="SRC_ATOP" depthTest="ENABLE" focusTraversable="false" mnemonicParsing="false" onAction="#handleClicks" prefHeight="125.0" prefWidth="221.0" text="Profesoret">
+                  <Button fx:id="btnProfesor" blendMode="SRC_ATOP" depthTest="ENABLE" focusTraversable="false" onAction="#handleClicks" prefHeight="125.0" prefWidth="221.0" text="_Profesoret">
                      <graphic>
                         <ImageView fitHeight="108.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +53,7 @@
                      </VBox.margin>
                   </Button>
                   <Region prefHeight="7.0" prefWidth="200.0" />
-                  <Button fx:id="btnLendet" mnemonicParsing="false" onAction="#handleClicks" prefHeight="125.0" prefWidth="221.0" text="Lendet">
+                  <Button fx:id="btnLendet" onAction="#handleClicks" prefHeight="125.0" prefWidth="221.0" text="_Lendet">
                      <graphic>
                         <ImageView fitHeight="104.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +66,7 @@
                      </font>
                   </Button>
                   <Region prefHeight="7.0" prefWidth="200.0" />
-                  <Button fx:id="btnStudentet" alignment="CENTER" mnemonicParsing="false" onAction="#handleClicks" prefHeight="130.0" prefWidth="221.0" text="Studentet">
+                  <Button fx:id="btnStudentet" alignment="CENTER" onAction="#handleClicks" prefHeight="130.0" prefWidth="221.0" text="_Studentet">
                      <graphic>
                         <ImageView fitHeight="141.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -128,12 +132,12 @@
                         <URL value="@orari.css" />
                      </stylesheets>
                   </TableView>
-                  <TextField fx:id="textInput" prefHeight="36.0" prefWidth="329.0">
+                  <TextField fx:id="textInput" prefHeight="36.0" prefWidth="329.0" promptText="Kerko...">
                      <GridPane.margin>
                         <Insets left="50.0" right="200.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button fx:id="addBtn" mnemonicParsing="false" onAction="#shto" prefHeight="34.0" prefWidth="98.0" text="Add">
+                  <Button fx:id="addBtn" onAction="#shto" prefHeight="34.0" prefWidth="98.0" text="_Shto">
                      <GridPane.margin>
                         <Insets left="385.0" />
                      </GridPane.margin>
@@ -141,7 +145,7 @@
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#fshij" prefHeight="36.0" prefWidth="91.0" text="Delete">
+                  <Button fx:id="deleteBtn" onAction="#fshij" prefHeight="36.0" prefWidth="91.0" text="_Fshij">
                      <GridPane.margin>
                         <Insets left="486.0" />
                      </GridPane.margin>
@@ -168,4 +172,36 @@
          </opaqueInsets>
       </VBox>
    </center>
+   <top>
+      <MenuBar prefHeight="26.0" prefWidth="782.0" styleClass="navbar" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Dokumenti">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Mbylle">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ndihme">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
+                  <accelerator>
+                     <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                  </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+         </menus>
+         <padding>
+            <Insets top="1.0" />
+         </padding>
+      </MenuBar>
+   </top>
 </BorderPane>

@@ -1,12 +1,15 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import properties.Lenda;
 import properties.Mesimdhenes;
 import properties.Student;
@@ -72,6 +75,42 @@ public class Admin implements Initializable {
 
     @FXML
     private Button deleteBtn ;
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Orari i konsultimeve");
+        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        Stage stage = (Stage) tabelaAdmin.getScene().getWindow();
+        stage.close();
+
+    }
+
+    @FXML
+    void rrethNesh(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root,250,150);
+        primaryStage.setScene(scene);
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Rreth Nesh");
+        primaryStage.show();
+
+
+
+    }
+
+
+    @FXML
+    void exit(ActionEvent event) {
+        ((Stage) tabelaAdmin.getScene().getWindow()).close();
+    }
 
 
 
@@ -121,6 +160,9 @@ public class Admin implements Initializable {
             Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
         }else if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
             Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
+            Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
+
+
         }
         else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Student) {
             Student.fshijPerdoruesit(tabelaAdmin, dbcon);
