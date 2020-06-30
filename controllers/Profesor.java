@@ -200,7 +200,7 @@ public class Profesor implements Initializable {
 
     private static void caktoMesimdhenes(String email) throws SQLException {
         String sql = "SELECT m_ID, Emri, Mbiemri from Mesimdhenesit WHERE email = '" + email + "'";
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try {
             initializeDB();
             resultSet = statement.executeQuery(sql);
@@ -219,7 +219,6 @@ public class Profesor implements Initializable {
     }
 
     private static void printError(String mesazh) {
-        Alert.AlertType alertAlertType;
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Gabim!");
         alert.setHeaderText(null);
@@ -324,6 +323,7 @@ public class Profesor implements Initializable {
             caktoMesimdhenes(email);
             populateChoicebox(lendet);
         } catch (SQLException e) {
+            printError("Gabim me databaze");
 
         }
         setOraripTab();

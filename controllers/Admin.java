@@ -18,34 +18,56 @@ import properties.baza;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Admin implements Initializable {
+    Connection dbcon;
     @FXML
     private Menu file;
-
     @FXML
     private MenuItem logout;
-
     @FXML
     private MenuItem exit;
-
     @FXML
     private Menu help;
-
     @FXML
     private MenuItem about;
-
     @FXML
     private Menu language;
-
     @FXML
     private ToggleGroup lang;
-
-
-    Connection dbcon;
+    @FXML
+    private Button btnProfesor;
+    @FXML
+    private Button btnLendet;
+    @FXML
+    private Button btnStudentet;
+    @FXML
+    private Pane pnStatus;
+    @FXML
+    private Label lbStatus;
+    @FXML
+    private TableView<baza> tabelaAdmin;
+    @FXML
+    private TableColumn<?, ?> id;
+    @FXML
+    private TableColumn<?, ?> Emri;
+    @FXML
+    private TableColumn<?, ?> Mbiemri;
+    @FXML
+    private TableColumn<?, ?> Roli;
+    @FXML
+    private TableColumn<?, ?> Email;
+    @FXML
+    private TextField textInput;
+    @FXML
+    private Button addBtn;
+    @FXML
+    private Button deleteBtn;
 
     {
         try {
@@ -54,6 +76,7 @@ public class Admin implements Initializable {
             e.printStackTrace();
         }
     }
+
     void lang() {
         String lang = "";
         RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
@@ -87,48 +110,6 @@ public class Admin implements Initializable {
         Email.setVisible(false);
     }
 
-
-    @FXML
-    private Button btnProfesor;
-
-    @FXML
-    private Button btnLendet;
-
-    @FXML
-    private Button btnStudentet;
-
-    @FXML
-    private Pane pnStatus;
-
-    @FXML
-    private Label lbStatus;
-
-    @FXML
-    private TableView<baza> tabelaAdmin;
-
-    @FXML
-    private TableColumn<?, ?> id;
-
-    @FXML
-    private TableColumn<?, ?> Emri;
-
-    @FXML
-    private TableColumn<?, ?> Mbiemri;
-
-    @FXML
-    private TableColumn<?, ?> Roli;
-
-    @FXML
-    private TableColumn<?, ?> Email;
-
-    @FXML
-    private TextField textInput;
-
-    @FXML
-    private Button addBtn;
-
-    @FXML
-    private Button deleteBtn ;
     @FXML
     void logOut(ActionEvent event) throws IOException {
         Parent root;
@@ -148,14 +129,13 @@ public class Admin implements Initializable {
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
-        Scene scene = new Scene(root,250,150);
+        Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Rreth Nesh");
         primaryStage.show();
-
 
 
     }
@@ -165,7 +145,6 @@ public class Admin implements Initializable {
     void exit(ActionEvent event) {
         ((Stage) tabelaAdmin.getScene().getWindow()).close();
     }
-
 
 
     @FXML
@@ -188,7 +167,6 @@ public class Admin implements Initializable {
             Roli.setVisible(false);
 
 
-
         } else if (event.getSource() == btnProfesor) {
             lbStatus.setText(bundle.getString("admin_label_p"));
             Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
@@ -200,7 +178,7 @@ public class Admin implements Initializable {
 
         } else if (event.getSource() == btnLendet) {
             lbStatus.setText(bundle.getString("admin_label_l"));
-            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli,textInput);
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
             id.setText(bundle.getString("admin_lenda_k1"));
             Emri.setText(bundle.getString("admin_lenda_k2"));
             Roli.setText(bundle.getString("admin_lenda_k3"));
@@ -220,7 +198,7 @@ public class Admin implements Initializable {
         }
         Mbiemri.setVisible(false);
         Email.setVisible(false);
-        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
+        lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
 
 
     }
@@ -228,16 +206,15 @@ public class Admin implements Initializable {
     public void fshij(javafx.event.ActionEvent event) throws Exception {
         tabelaAdmin.setEditable(true);
         event.getSource();
-        if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
+        if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Lenda) {
             Lenda.fshijLendet(tabelaAdmin, dbcon);
             Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
-        }else if(tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
+        } else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Mesimdhenes) {
             Mesimdhenes.fshijMesimdhenesit(tabelaAdmin, dbcon);
             Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
 
 
-        }
-        else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Student) {
+        } else if (tabelaAdmin.getSelectionModel().getSelectedItem() instanceof Student) {
             Student.fshijPerdoruesit(tabelaAdmin, dbcon);
             Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
         }
@@ -246,14 +223,14 @@ public class Admin implements Initializable {
 
     public void shto(javafx.event.ActionEvent event) throws IOException {
         Parent root;
-        root= FXMLLoader.load(getClass().getClassLoader().getResource("fxml/add.fxml"));
-         Stage primaryStage=new Stage();
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/add.fxml"));
+        Stage primaryStage = new Stage();
         primaryStage.setTitle("add");
         primaryStage.setScene(new Scene(root, 285, 502));
         primaryStage.setResizable(false);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.show();
-        primaryStage.setOnHidden(windowEvent ->{
+        primaryStage.setOnHidden(windowEvent -> {
             Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
             try {
                 Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
@@ -261,8 +238,6 @@ public class Admin implements Initializable {
                 e.printStackTrace();
             }
             Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
-
-
 
 
         });

@@ -50,7 +50,6 @@ public class Student implements Initializable {
     private TableColumn<?, ?> kolonaMesimdhenes;
 
 
-
     @FXML
     private TableColumn<?, ?> kolonaLenda;
 
@@ -84,14 +83,13 @@ public class Student implements Initializable {
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
-        Scene scene = new Scene(root,250,150);
+        Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Rreth Nesh");
         primaryStage.show();
-
 
 
     }
@@ -105,10 +103,11 @@ public class Student implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeDB();
-        Konsultim_P.startTable(dbCon,statement,tabela, kolonaMesimdhenes, kolonaLenda, kolonaDita, kolonaOra, kolonaSalla);
-        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
+        Konsultim_P.startTable(dbCon, statement, tabela, kolonaMesimdhenes, kolonaLenda, kolonaDita, kolonaOra, kolonaSalla);
+        lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
     }
-    private  void initializeDB() {
+
+    private void initializeDB() {
         try {
             if (dbCon == null || dbCon.isClosed())
                 dbCon = DriverManager.getConnection("jdbc:sqlite:C:\\Sqlite\\db\\menaxhimi_konsultimeve.db");

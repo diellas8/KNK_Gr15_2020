@@ -19,10 +19,9 @@ import java.util.ResourceBundle;
 
 public class Login implements Initializable {
 
-private Parent root;
-private Stage primaryStage= new Stage();
+    private final Stage primaryStage = new Stage();
     @FXML
-    private Button button = new Button();
+    private final Button button = new Button();
 
     @FXML
     private Menu file;
@@ -81,14 +80,13 @@ private Stage primaryStage= new Stage();
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
-        Scene scene = new Scene(root,250,150);
+        Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Rreth Nesh");
         primaryStage.show();
-
 
 
     }
@@ -105,48 +103,48 @@ private Stage primaryStage= new Stage();
         try {
 
             int role = hash.Password.getData(email.getText(), password.getText());
-        switch (role){
-            case 1: {
-                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/admin.fxml"));
-                primaryStage.setTitle("controllers.Admin");
-                primaryStage.setScene(new Scene(root, 800, 550));
-                primaryStage.setResizable(false);
-                primaryStage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                break;
-            }
-            case 2:{
-                Profesor.saveEmail(email.getText());
-                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/profesor1.fxml"));
-                primaryStage.setTitle("Orari i konsultimeve");
-                primaryStage.setScene(new Scene(root, 700, 500));
-                primaryStage.setResizable(false);
-                primaryStage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                break;
+            Parent root;
+            switch (role) {
+                case 1: {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/admin.fxml"));
+                    primaryStage.setTitle("controllers.Admin");
+                    primaryStage.setScene(new Scene(root, 800, 550));
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    break;
+                }
+                case 2: {
+                    Profesor.saveEmail(email.getText());
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/profesor1.fxml"));
+                    primaryStage.setTitle("Orari i konsultimeve");
+                    primaryStage.setScene(new Scene(root, 700, 500));
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    break;
+
+                }
+                case 3: {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/student.fxml"));
+                    primaryStage.setTitle("Orari i konsultimeve");
+                    primaryStage.setScene(new Scene(root, 700, 550));
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    break;
+                }
+                default: {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Email or password is wrong...");
+                    alert.showAndWait();
+                    password.clear();
+                }
 
             }
-            case 3: {
-                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/student.fxml"));
-                primaryStage.setTitle("Orari i konsultimeve");
-                primaryStage.setScene(new Scene(root, 700, 550));
-                primaryStage.setResizable(false);
-                primaryStage.show();
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                break;
-            }
-            default: {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Email or password is wrong...");
-                alert.showAndWait();
-                password.clear();
-            }
-
-        }
-    }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -156,7 +154,7 @@ private Stage primaryStage= new Stage();
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button.setText("Kycu");
 
-        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
+        lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
 
 
     }

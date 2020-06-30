@@ -5,22 +5,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static void main(String[] args) {
+
+        launch(args);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         primaryStage.setTitle("login");
 
 
-        primaryStage.setScene(new Scene(root, 900, 550));
+        primaryStage.setScene(new Scene(root, 700, 450));
         primaryStage.setResizable(false);
         primaryStage.show();
 
-    }
-
-
-    public static void main(String[] args) {
-
-        launch(args);
     }
 }
 

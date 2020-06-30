@@ -1,16 +1,14 @@
 package properties;
 
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.*;
-import java.sql.Statement;
 
+import java.sql.*;
 
 
 public class Lenda extends baza {
@@ -25,18 +23,6 @@ public class Lenda extends baza {
     }
 
     public Lenda() {
-    }
-
-    public String getLenda() {
-        return Lenda;
-    }
-
-    public String getProfesoret() {
-        return Profesoret;
-    }
-
-    public int getViti() {
-        return Viti;
     }
 
     public static void startColumn(Connection dbcon, TableView tabelaAdmin, TableColumn<?, ?> nje, TableColumn<?, ?> dy, TableColumn<?, ?> tre, TextField filterField) throws Exception {
@@ -67,17 +53,14 @@ public class Lenda extends baza {
 
                     if (lenda.getLenda().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    } else if (lenda.getProfesoret().toLowerCase().contains(lowerCaseFilter)) {
+                    } else // Does not match.
+                        if (lenda.getProfesoret().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    } else if (String.valueOf(lenda.getViti()).contains(lowerCaseFilter))
-                        return true;
-                    else
-                        return false; // Does not match.
+                    } else return String.valueOf(lenda.getViti()).contains(lowerCaseFilter);
                 });
             });
 
             SortedList<Lenda> sortedData = new SortedList<>(filteredData);
-
 
 
             sortedData.comparatorProperty().bind(tabelaAdmin.comparatorProperty());
@@ -89,9 +72,7 @@ public class Lenda extends baza {
         }
     }
 
-
-
-    private static void changeWidth(TableView tableView,TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
+    private static void changeWidth(TableView tableView, TableColumn<?, ?> nje, TableColumn<?, ?> dy, TableColumn<?, ?> tre) {
         nje.prefWidthProperty().bind(tableView.widthProperty().multiply(0.4));
         dy.prefWidthProperty().bind(tableView.widthProperty().multiply(0.4));
         tre.prefWidthProperty().bind(tableView.widthProperty().multiply(0.2));
@@ -106,40 +87,38 @@ public class Lenda extends baza {
 
     }
 
-
-
-    private static void changeVisibility(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
+    private static void changeVisibility(TableColumn<?, ?> nje, TableColumn<?, ?> dy, TableColumn<?, ?> tre) {
         nje.setVisible(true);
         dy.setVisible(true);
         tre.setVisible(true);
     }
 
-    private static ObservableList<Lenda> getLendet(Connection dbcon) throws Exception{
-        ObservableList <Lenda> list = FXCollections.observableArrayList();
+    private static ObservableList<Lenda> getLendet(Connection dbcon) throws Exception {
+        ObservableList<Lenda> list = FXCollections.observableArrayList();
         Statement stmt = dbcon.createStatement();
-        String query= "SELECT l.Lenda, m.Emri, m.Mbiemri, l.Viti FROM Lendet l INNER JOIN Mesimdhenesit m ON l.Profesori = m.m_ID";
+        String query = "SELECT l.Lenda, m.Emri, m.Mbiemri, l.Viti FROM Lendet l INNER JOIN Mesimdhenesit m ON l.Profesori = m.m_ID";
         ResultSet res = stmt.executeQuery(query);
 
-        while(res.next()) {
+        while (res.next()) {
             String Emri = res.getString("Lenda");
-            String Profesori= res.getString("Emri") + " " + res.getString("Mbiemri");
+            String Profesori = res.getString("Emri") + " " + res.getString("Mbiemri");
             int Viti = res.getInt("Viti");
             list.add(new Lenda(Emri, Profesori, Viti));
         }
         return list;
     }
 
-    public static void fshijLendet(TableView tabelaAdmin,Connection dbcon) {
+    public static void fshijLendet(TableView tabelaAdmin, Connection dbcon) {
         try {
 
             Lenda lenda = (Lenda) tabelaAdmin.getSelectionModel().getSelectedItem();
-            String query="DELETE FROM Lendet WHERE Lenda=?";
+            String query = "DELETE FROM Lendet WHERE Lenda=?";
             PreparedStatement preparedStatement = dbcon.prepareStatement(query);
 
             preparedStatement.setString(1, lenda.getLenda());
             preparedStatement.executeUpdate();
             //printSuccess("Lenda " + lenda.getLenda()+ "e ligjeruar nga " + lenda.getProfesoret() + " u fshi me sukses");
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
@@ -147,7 +126,7 @@ public class Lenda extends baza {
 
     }
 
-    public static void printSuccess(String mesazh){
+    public static void printSuccess(String mesazh) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(mesazh);
         alert.setHeaderText(null);
@@ -155,7 +134,17 @@ public class Lenda extends baza {
         alert.showAndWait();
     }
 
+    public String getLenda() {
+        return Lenda;
+    }
 
+    public String getProfesoret() {
+        return Profesoret;
+    }
+
+    public int getViti() {
+        return Viti;
+    }
 
 
 }

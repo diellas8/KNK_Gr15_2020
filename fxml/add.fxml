@@ -1,110 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Add">
-  <tabs>
-    <Tab text="Shto Lende">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="300.0">
-               <children>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="Lenda" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Lenda..." />
-                        <TextField fx:id="idMesimdhenesit" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="ID e mesimdhenesit..." />
-                        <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoLende" prefHeight="36.0" prefWidth="100.0" text="Shto" />
-                        <Label layoutX="104.0" layoutY="33.0" prefHeight="31.0" prefWidth="126.0" text="Lenda">
-                           <font>
-                              <Font name="System Bold Italic" size="18.0" />
-                           </font>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<TabPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.Add">
+    <tabs>
+        <Tab text="Shto Lende">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="300.0">
+                    <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="Lenda" layoutX="50.0" layoutY="97.0" prefHeight="45.0"
+                                           prefWidth="184.0" promptText="Lenda..."/>
+                                <TextField fx:id="idMesimdhenesit" layoutX="51.0" layoutY="165.0" prefHeight="45.0"
+                                           prefWidth="184.0" promptText="ID e mesimdhenesit..."/>
+                                <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoLende"
+                                        prefHeight="36.0" prefWidth="100.0" text="Shto"/>
+                                <Label layoutX="104.0" layoutY="33.0" prefHeight="31.0" prefWidth="126.0" text="Lenda">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <RadioButton layoutX="161.0" layoutY="259.0" mnemonicParsing="false" text="1"
+                                     AnchorPane.leftAnchor="161.0">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="Viti"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton layoutX="105.0" layoutY="293.0" mnemonicParsing="false" prefHeight="31.0"
+                                     prefWidth="64.0" text="2" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0"/>
+                        <RadioButton layoutX="106.0" layoutY="333.0" mnemonicParsing="false" prefHeight="33.0"
+                                     prefWidth="58.0" text="3" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0"/>
+                        <Label layoutX="88.0" layoutY="258.0" text="Viti i pare">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-                  <RadioButton layoutX="161.0" layoutY="259.0" mnemonicParsing="false" text="1" AnchorPane.leftAnchor="161.0">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Viti" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton layoutX="105.0" layoutY="293.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="2" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0" />
-                  <RadioButton layoutX="106.0" layoutY="333.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="58.0" text="3" toggleGroup="$Viti" AnchorPane.leftAnchor="160.0" />
-                  <Label layoutX="88.0" layoutY="258.0" text="Viti i pare">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="88.0" layoutY="299.0" text="Viti i dyte">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="88.0" layoutY="341.0" text="Viti i trete">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Shto Mesimdhenes">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="mEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Emri..." />
-                  <TextField fx:id="mMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="Mbiemri..." />
-                  <TextField fx:id="mEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0" prefWidth="184.0" promptText="Email.." />
-                  <RadioButton layoutX="104.0" layoutY="311.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="41.0" text="1">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Statusi" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton layoutX="104.0" layoutY="350.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" text="2" toggleGroup="$Statusi" />
-                  <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoMesimdhenes" prefHeight="36.0" prefWidth="100.0" text="Shto" />
-                  <Label layoutX="80.0" layoutY="34.0" prefHeight="31.0" prefWidth="126.0" text="Mesimdhenes">
-                     <font>
-                        <Font name="System Bold Italic" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="146.0" layoutY="316.0" prefHeight="17.0" prefWidth="60.0" text="controllers.Profesor">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="145.0" layoutY="354.0" text="Asistent">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-      <Tab text="Shto controllers.Student ">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="276.0">
-               <children>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="sEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Emri..." />
-                        <TextField fx:id="sMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="Mbiemri..." />
-                        <TextField fx:id="sEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0" prefWidth="184.0" promptText="Email.." />
-                        <Label layoutX="100.0" layoutY="37.0" prefHeight="31.0" prefWidth="126.0" text="controllers.Student">
-                           <font>
-                              <Font name="System Bold Italic" size="18.0" />
-                           </font>
+                        <Label layoutX="88.0" layoutY="299.0" text="Viti i dyte">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-                  <Button defaultButton="true" layoutX="94.0" layoutY="327.0" onAction="#shtuoStudent" prefHeight="36.0" prefWidth="100.0" text="Shto" />
-               </children>
-            </AnchorPane>
-        </content>
-      </Tab>
-  </tabs>
+                        <Label layoutX="88.0" layoutY="341.0" text="Viti i trete">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Shto Mesimdhenes">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="mEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0"
+                                   promptText="Emri..."/>
+                        <TextField fx:id="mMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0"
+                                   promptText="Mbiemri..."/>
+                        <TextField fx:id="mEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0" prefWidth="184.0"
+                                   promptText="Email.."/>
+                        <RadioButton layoutX="104.0" layoutY="311.0" mnemonicParsing="false" prefHeight="31.0"
+                                     prefWidth="41.0" text="1">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="Statusi"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton layoutX="104.0" layoutY="350.0" mnemonicParsing="false" prefHeight="33.0"
+                                     prefWidth="37.0" text="2" toggleGroup="$Statusi"/>
+                        <Button defaultButton="true" layoutX="92.0" layoutY="400.0" onAction="#shtoMesimdhenes"
+                                prefHeight="36.0" prefWidth="100.0" text="Shto"/>
+                        <Label layoutX="80.0" layoutY="34.0" prefHeight="31.0" prefWidth="126.0" text="Mesimdhenes">
+                            <font>
+                                <Font name="System Bold Italic" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="146.0" layoutY="316.0" prefHeight="17.0" prefWidth="60.0"
+                               text="controllers.Profesor">
+                            <font>
+                                <Font name="System Bold Italic" size="15.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="145.0" layoutY="354.0" text="Asistent">
+                            <font>
+                                <Font name="System Bold Italic" size="16.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Shto controllers.Student ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="276.0">
+                    <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="sEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0"
+                                           prefWidth="184.0" promptText="Emri..."/>
+                                <TextField fx:id="sMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0"
+                                           prefWidth="184.0" promptText="Mbiemri..."/>
+                                <TextField fx:id="sEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0"
+                                           prefWidth="184.0" promptText="Email.."/>
+                                <Label layoutX="100.0" layoutY="37.0" prefHeight="31.0" prefWidth="126.0"
+                                       text="controllers.Student">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <Button defaultButton="true" layoutX="94.0" layoutY="327.0" onAction="#shtuoStudent"
+                                prefHeight="36.0" prefWidth="100.0" text="Shto"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
 </TabPane>
