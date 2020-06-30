@@ -42,7 +42,6 @@ public class Lenda extends baza {
     public static void startColumn(Connection dbcon, TableView tabelaAdmin, TableColumn<?, ?> nje, TableColumn<?, ?> dy, TableColumn<?, ?> tre, TextField filterField) throws Exception {
         changeVisibility(nje, dy, tre);
         changeWidth(tabelaAdmin, nje, dy, tre);
-        changeName(nje, dy, tre);
 
         nje.setCellValueFactory(new PropertyValueFactory<>("Lenda"));
         dy.setCellValueFactory(new PropertyValueFactory<>("Profesoret"));
@@ -107,11 +106,7 @@ public class Lenda extends baza {
 
     }
 
-    private static void changeName(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
-        nje.setText("Lenda");
-        dy.setText("Ligjeruesi");
-        tre.setText("Viti");
-    }
+
 
     private static void changeVisibility(TableColumn<?,?> nje, TableColumn<?,?> dy, TableColumn<?,?> tre) {
         nje.setVisible(true);

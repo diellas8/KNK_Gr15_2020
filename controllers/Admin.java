@@ -19,10 +19,10 @@ import properties.baza;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Admin implements Initializable {
-
     @FXML
     private Menu file;
 
@@ -53,6 +53,38 @@ public class Admin implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    void lang() {
+        String lang = "";
+        RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
+        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
+
+        file.setText(bundle.getString("menu1"));
+        logout.setText(bundle.getString("menu1item1"));
+        exit.setText(bundle.getString("menu1item2"));
+        help.setText(bundle.getString("menu2"));
+        about.setText(bundle.getString("menu2item1"));
+        language.setText(bundle.getString("menu3"));
+        addBtn.setText(bundle.getString("admin_add"));
+        deleteBtn.setText(bundle.getString("admin_delete"));
+        textInput.setText(bundle.getString("admin_searchbar"));
+        btnLendet.setText(bundle.getString("admin_lendet"));
+        btnProfesor.setText(bundle.getString("admin_prof"));
+        btnStudentet.setText(bundle.getString("admin_studentet"));
+        lbStatus.setText(bundle.getString("admin_label_l"));
+        try {
+            Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli, textInput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        id.setText(bundle.getString("admin_lenda_k1"));
+        Emri.setText(bundle.getString("admin_lenda_k2"));
+        Roli.setText(bundle.getString("admin_lenda_k3"));
+        Mbiemri.setVisible(false);
+        Email.setVisible(false);
     }
 
 
@@ -100,7 +132,7 @@ public class Admin implements Initializable {
     @FXML
     void logOut(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/login.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Orari i konsultimeve");
         primaryStage.setScene(new Scene(root, 700, 500));
@@ -114,7 +146,7 @@ public class Admin implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);
@@ -138,22 +170,32 @@ public class Admin implements Initializable {
 
     @FXML
     public void handleClicks(javafx.event.ActionEvent event) throws Exception {
+
+        String lang = "";
+        RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
+        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
         if (event.getSource() == btnStudentet) {
 
-            lbStatus.setText("Studentet");
+            lbStatus.setText(bundle.getString("admin_label_s"));
             Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
             Roli.setVisible(false);
 
 
 
         } else if (event.getSource() == btnProfesor) {
-            lbStatus.setText("Profesoret");
+            lbStatus.setText(bundle.getString("admin_label_p"));
             Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
 
 
         } else if (event.getSource() == btnLendet) {
-            lbStatus.setText("Lendet");
+            lbStatus.setText(bundle.getString("admin_label_l"));
             Lenda.startColumn(dbcon, tabelaAdmin, id, Emri, Roli,textInput);
+            id.setText(bundle.getString("admin_lenda_k1"));
+            Emri.setText(bundle.getString("admin_lenda_k2"));
+            Roli.setText(bundle.getString("admin_lenda_k3"));
             Mbiemri.setVisible(false);
             Email.setVisible(false);
 
@@ -170,6 +212,7 @@ public class Admin implements Initializable {
         }
         Mbiemri.setVisible(false);
         Email.setVisible(false);
+        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
 
 
     }
@@ -195,7 +238,7 @@ public class Admin implements Initializable {
 
     public void shto(javafx.event.ActionEvent event) throws IOException {
         Parent root;
-        root= FXMLLoader.load(getClass().getResource("fxml/add.fxml"));
+        root= FXMLLoader.load(getClass().getClassLoader().getResource("fxml/add.fxml"));
          Stage primaryStage=new Stage();
         primaryStage.setTitle("add");
         primaryStage.setScene(new Scene(root, 285, 502));

@@ -21,6 +21,8 @@ public class Login implements Initializable {
 
 private Parent root;
 private Stage primaryStage= new Stage();
+    @FXML
+    private Button button = new Button();
 
     @FXML
     private Menu file;
@@ -52,26 +54,33 @@ private Stage primaryStage= new Stage();
 
 
     @FXML
-    void changeLang(ActionEvent event) {
-
-    }
-
-    @FXML
-    void logOut(ActionEvent event)  {
+    void logOut(ActionEvent event) {
 
 
     }
-    void lang (){
-        Locale locale = new Locale("alb");
+
+    void lang() {
+        String lang = "";
+        RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
+        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
         password.setPromptText(bundle.getString("password"));
+        file.setText(bundle.getString("menu1"));
+        logout.setText(bundle.getString("menu1item1"));
+        exit.setText(bundle.getString("menu1item2"));
+        help.setText(bundle.getString("menu2"));
+        about.setText(bundle.getString("menu2item1"));
+        language.setText(bundle.getString("menu3"));
+        button.setText(bundle.getString("buton"));
 
     }
 
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);
@@ -99,7 +108,7 @@ private Stage primaryStage= new Stage();
             int role = hash.Password.getData(email.getText(), password.getText());
         switch (role){
             case 1: {
-                root = FXMLLoader.load(getClass().getResource("fxml/admin.fxml"));
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/admin.fxml"));
                 primaryStage.setTitle("controllers.Admin");
                 primaryStage.setScene(new Scene(root, 800, 550));
                 primaryStage.setResizable(false);
@@ -109,7 +118,7 @@ private Stage primaryStage= new Stage();
             }
             case 2:{
                 Profesor.saveEmail(email.getText());
-                root = FXMLLoader.load(getClass().getResource("fxml/profesor1.fxml"));
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/profesor1.fxml"));
                 primaryStage.setTitle("Orari i konsultimeve");
                 primaryStage.setScene(new Scene(root, 700, 500));
                 primaryStage.setResizable(false);
@@ -119,7 +128,7 @@ private Stage primaryStage= new Stage();
 
             }
             case 3: {
-                root = FXMLLoader.load(getClass().getResource("fxml/student.fxml"));
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/student.fxml"));
                 primaryStage.setTitle("Orari i konsultimeve");
                 primaryStage.setScene(new Scene(root, 700, 550));
                 primaryStage.setResizable(false);
@@ -143,9 +152,14 @@ private Stage primaryStage= new Stage();
         }
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lang();
+        button.setText("Kycu");
+
+        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
+
+
     }
 }
 
