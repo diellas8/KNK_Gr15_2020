@@ -25,11 +25,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MenuBar  prefHeight="26.0" prefWidth="650.0" styleClass="navbar">
+      <MenuBar layoutX="-4.0" layoutY="1.0" prefHeight="26.0" prefWidth="660.0" styleClass="navbar">
          <menus>
             <Menu fx:id="file" mnemonicParsing="false" text="Dokumenti">
                <items>
-                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                  <MenuItem fx:id="logout" disable="true" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
@@ -52,7 +52,7 @@
             </Menu>
             <Menu fx:id="language" mnemonicParsing="false" text="Gjuha">
                <items>
-                  <RadioMenuItem mnemonicParsing="false" text="ALB">
+                  <RadioMenuItem mnemonicParsing="false" selected="true" text="ALB">
                      <toggleGroup>
                         <ToggleGroup fx:id="lang" />
                      </toggleGroup>

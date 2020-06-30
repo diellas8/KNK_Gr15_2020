@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,9 +18,30 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Student implements Initializable {
+    @FXML
+    private Menu file;
+
+    @FXML
+    private MenuItem logout;
+
+    @FXML
+    private MenuItem exit;
+
+    @FXML
+    private Menu help;
+
+    @FXML
+    private MenuItem about;
+
+    @FXML
+    private Menu language;
+
+    @FXML
+    private ToggleGroup lang;
 
     @FXML
     private TableView<baza> tabela;
@@ -86,7 +106,7 @@ public class Student implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeDB();
         Konsultim_P.startTable(dbCon,statement,tabela, kolonaMesimdhenes, kolonaLenda, kolonaDita, kolonaOra, kolonaSalla);
-
+        lang.selectedToggleProperty().addListener((ob, o, n) ->lang());
     }
     private  void initializeDB() {
         try {
@@ -97,6 +117,26 @@ public class Student implements Initializable {
         } catch (Exception e) {
 
         }
+    }
+
+    void lang() {
+        String lang = "";
+        RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
+        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
+        file.setText(bundle.getString("menu1"));
+        logout.setText(bundle.getString("menu1item1"));
+        exit.setText(bundle.getString("menu1item2"));
+        help.setText(bundle.getString("menu2"));
+        about.setText(bundle.getString("menu2item1"));
+        language.setText(bundle.getString("menu3"));
+        kolonaMesimdhenes.setText(bundle.getString("student_k1"));
+        kolonaLenda.setText(bundle.getString("student_k2"));
+        kolonaDita.setText(bundle.getString("student_k3"));
+        kolonaOra.setText(bundle.getString("student_k4"));
+        kolonaSalla.setText(bundle.getString("student_k5"));
     }
 
 }

@@ -74,7 +74,6 @@ private Stage primaryStage= new Stage();
         about.setText(bundle.getString("menu2item1"));
         language.setText(bundle.getString("menu3"));
         button.setText(bundle.getString("buton"));
-
     }
 
     @FXML

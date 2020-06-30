@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
 
 
-public class Student extends baza{
+public class Student extends baza {
     private  int s_ID;
     private String emri;
     private String mbiemri;

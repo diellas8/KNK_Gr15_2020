@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -18,6 +19,7 @@ import properties.baza;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Profesor implements Initializable {
@@ -57,6 +59,8 @@ public class Profesor implements Initializable {
 
     @FXML
     private Tab oraripTab;
+    @FXML
+    private Tab shtoTab;
 
     @FXML
     private Tab orariTab;
@@ -71,19 +75,19 @@ public class Profesor implements Initializable {
     private ToggleGroup salla;
 
     @FXML
-    private  CheckBox eHene = new CheckBox("E hene");
+    private CheckBox eHene = new CheckBox("E hene");
 
     @FXML
-    private  CheckBox eMarte = new CheckBox("E marte");
+    private CheckBox eMarte = new CheckBox("E marte");
 
     @FXML
-    private  CheckBox eMerkure = new CheckBox("E merkure");
+    private CheckBox eMerkure = new CheckBox("E merkure");
 
     @FXML
-    private  CheckBox eEnjte = new CheckBox("E enjte");
+    private CheckBox eEnjte = new CheckBox("E enjte");
 
     @FXML
-    private  CheckBox ePremte = new CheckBox("E premte");
+    private CheckBox ePremte = new CheckBox("E premte");
 
     @FXML
     private Button largo;
@@ -124,6 +128,29 @@ public class Profesor implements Initializable {
     @FXML
     private TableColumn<?, ?> KolonaSallaP;
 
+    @FXML
+    private Text textWarning;
+
+    @FXML
+    private Label labelKryesore;
+
+    @FXML
+    private Label labelDita;
+
+    @FXML
+    private Label labelKoha;
+
+    @FXML
+    private Label labelSalla;
+    @FXML
+    private Button butoniRuaj;
+
+    @FXML
+    private Label labelLenda;
+    @FXML
+    private Label labelaKryesore2;
+
+
     private String stringOra = "";
     private int salle;
 
@@ -149,14 +176,13 @@ public class Profesor implements Initializable {
         Parent root;
         root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
-        Scene scene = new Scene(root,250,150);
+        Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Rreth Nesh");
         primaryStage.show();
-
 
 
     }
@@ -166,7 +192,6 @@ public class Profesor implements Initializable {
     void exit(ActionEvent event) {
         ((Stage) tabelaPersonale.getScene().getWindow()).close();
     }
-
 
 
     public static void saveEmail(String em) {
@@ -275,7 +300,7 @@ public class Profesor implements Initializable {
                     printError("Ju lutem zgjedhni se paku nje dite kur doni te mbani konsultime.");
 
                 }
-                if(!dita.equals("")) {
+                if (!dita.equals("")) {
                     printInformation("Orari i konsultimeve u perditesua.");
                     clearInputs();
                 }
@@ -303,7 +328,7 @@ public class Profesor implements Initializable {
         }
         setOraripTab();
         setOrariTab();
-
+        lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
 
 
     }
@@ -326,13 +351,13 @@ public class Profesor implements Initializable {
             } catch (SQLException e) {
                 printError(e + "");
             }
-            }
-        if(!statement.isClosed() || statement==null)
+        }
+        if (!statement.isClosed() || statement == null)
             statement.close();
-        if(!dbCon.isClosed() || dbCon == null)
+        if (!dbCon.isClosed() || dbCon == null)
             dbCon.close();
 
-        }
+    }
 
 
     private void printInformation(String mesazhi) {
@@ -360,41 +385,87 @@ public class Profesor implements Initializable {
         salla.getSelectedToggle().setSelected(false);
 
     }
-    private void setOraripTab(){
+
+    private void setOraripTab() {
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
-            if(newTab == oraripTab) {
+            if (newTab == oraripTab) {
                 initializeDB();
                 Konsultim_P.startColumn(dbCon, tabelaPersonale, kolonaLenda, kolonaDita, kolonaKoha, kolonaSalla, mesimdhenesi);
             }
 
         });
     }
-    private void setOrariTab(){
+
+    private void setOrariTab() {
         tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
-            if(newTab == orariTab) {
+            if (newTab == orariTab) {
                 initializeDB();
-                Konsultim_P.startTable(dbCon,statement,tabelaPergjithshme, kolonaMesimdhenesi, KolonaLendaP, KolonaDitaP, KolonaKohaP, KolonaSallaP);
+                Konsultim_P.startTable(dbCon, statement, tabelaPergjithshme, kolonaMesimdhenesi, KolonaLendaP, KolonaDitaP, KolonaKohaP, KolonaSallaP);
             }
 
         });
     }
-    public  void fshijKonsultim() {
+
+    public void fshijKonsultim() {
         try {
             initializeDB();
             Konsultim_P konsultim_p = (Konsultim_P) tabelaPersonale.getSelectionModel().getSelectedItem();
-            String query="DELETE FROM Orari WHERE Lenda=? AND Ora = ? AND Salla = ? AND Dita = ?";
+            String query = "DELETE FROM Orari WHERE Lenda=? AND Ora = ? AND Salla = ? AND Dita = ?";
             PreparedStatement preparedStatement = dbCon.prepareStatement(query);
             preparedStatement.setString(1, konsultim_p.getLenda());
             preparedStatement.setString(2, konsultim_p.getOra());
             preparedStatement.setInt(3, konsultim_p.getSalla());
             preparedStatement.setString(4, konsultim_p.getDita());
             preparedStatement.executeUpdate();
-                tabelaPersonale.getItems().removeAll(tabelaPersonale.getSelectionModel().getSelectedItem());
-        } catch (SQLException ex){
+            tabelaPersonale.getItems().removeAll(tabelaPersonale.getSelectionModel().getSelectedItem());
+        } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
 
     }
 
+
+    void lang() {
+        String lang = "";
+        RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
+        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
+        file.setText(bundle.getString("menu1"));
+        logout.setText(bundle.getString("menu1item1"));
+        exit.setText(bundle.getString("menu1item2"));
+        help.setText(bundle.getString("menu2"));
+        about.setText(bundle.getString("menu2item1"));
+        language.setText(bundle.getString("menu3"));
+        labelKryesore.setText(bundle.getString("profesor_tab1_label"));
+        labelDita.setText(bundle.getString("profesor_tab1_dita"));
+        eHene.setText(bundle.getString("profesor_tab1_d1"));
+        eMarte.setText(bundle.getString("profesor_tab1_d2"));
+        eMerkure.setText(bundle.getString("profesor_tab1_d3"));
+        eEnjte.setText(bundle.getString("profesor_tab1_d4"));
+        ePremte.setText(bundle.getString("profesor_tab1_d5"));
+        labelKoha.setText(bundle.getString("profesor_tab1_koha"));
+        labelSalla.setText(bundle.getString("profesor_tab1_salla"));
+        labelLenda.setText(bundle.getString("profesor_tab1_lenda"));
+        butoniRuaj.setText(bundle.getString("profesor_tab1_ruaj"));
+        shtoTab.setText(bundle.getString("profesor_tab1"));
+        oraripTab.setText(bundle.getString("profesor_tab2"));
+        orariTab.setText(bundle.getString("profesor_tab3"));
+        textWarning.setText(bundle.getString("profesor_tab1_text"));
+        labelaKryesore2.setText(bundle.getString("profesor_tab2_label"));
+        kolonaLenda.setText(bundle.getString("profesor_tab2_lenda"));
+        kolonaDita.setText(bundle.getString("profesor_tab2_dita"));
+        kolonaKoha.setText(bundle.getString("profesor_tab2_koha"));
+        kolonaSalla.setText(bundle.getString("profesor_tab2_salla"));
+        largo.setText(bundle.getString("profesor_tab2_largo"));
+        KolonaDitaP.setText(kolonaLenda.getText());
+        KolonaKohaP.setText(kolonaKoha.getText());
+        KolonaLendaP.setText(kolonaLenda.getText());
+        KolonaSallaP.setText(kolonaSalla.getText());
+        kolonaMesimdhenesi.setText(bundle.getString("profesor_tab3_mesimdhenesi"));
+
+
+    }
 }
