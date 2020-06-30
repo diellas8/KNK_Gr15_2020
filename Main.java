@@ -3,14 +3,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        primaryStage.setTitle("admin");
+        primaryStage.setTitle("login");
 
-        primaryStage.setScene(new Scene(root, 800, 550));
+
+        primaryStage.setScene(new Scene(root, 650, 450));
         primaryStage.setResizable(false);
         primaryStage.show();
 
