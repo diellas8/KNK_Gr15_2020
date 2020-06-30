@@ -221,7 +221,7 @@
             <menus>
                 <Menu fx:id="file" mnemonicParsing="false" text="Dokumenti">
                     <items>
-                        <MenuItem fx:id="logout" disable="true" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                        <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                             </accelerator>

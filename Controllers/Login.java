@@ -21,7 +21,7 @@ public class Login implements Initializable {
 
     private final Stage primaryStage = new Stage();
     @FXML
-    private final Button button = new Button();
+    private Button button = new Button();
 
     @FXML
     private Menu file;
