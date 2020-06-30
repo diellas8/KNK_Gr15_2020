@@ -11,10 +11,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import properties.Lenda;
-import properties.Mesimdhenes;
-import properties.Student;
-import properties.baza;
+import Properties.Lenda;
+import Properties.Mesimdhenes;
+import Properties.Student;
+import Properties.baza;
 
 import java.io.IOException;
 import java.net.URL;

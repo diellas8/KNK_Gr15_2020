@@ -13,8 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.sqlite.SQLiteException;
-import properties.Konsultim_P;
-import properties.baza;
+import Properties.Konsultim_P;
+import Properties.baza;
 
 import java.io.IOException;
 import java.net.URL;

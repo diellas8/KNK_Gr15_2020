@@ -1,4 +1,4 @@
-package properties;
+package Properties;
 
 public class baza {
 

@@ -1,4 +1,4 @@
-package properties;
+package Properties;
 
 
 import javafx.collections.FXCollections;
