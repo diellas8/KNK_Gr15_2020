@@ -4,14 +4,16 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Student">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Student">
    <children>
-      <TableView fx:id="tabela" layoutY="26.0" stylesheets="@orari.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+      <TableView fx:id="tabela" layoutY="26.0" stylesheets="@../style/orari.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
         <columns>
           <TableColumn fx:id="kolonaMesimdhenes" prefWidth="141.0" text="Mesimdhenesi" />
           <TableColumn fx:id="kolonaLenda" prefWidth="147.0" text="Lenda" />
@@ -23,29 +25,39 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MenuBar prefHeight="26.0" prefWidth="782.0" styleClass="navbar">
+      <MenuBar  prefHeight="26.0" prefWidth="650.0" styleClass="navbar">
          <menus>
-            <Menu mnemonicParsing="false" text="Dokumenti">
+            <Menu fx:id="file" mnemonicParsing="false" text="Dokumenti">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Mbylle">
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Mbylle">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Ndihme">
+            <Menu fx:id="help" mnemonicParsing="false" text="Ndihme">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
+               </items>
+            </Menu>
+            <Menu fx:id="language" mnemonicParsing="false" text="Gjuha">
+               <items>
+                  <RadioMenuItem mnemonicParsing="false" text="ALB">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="lang" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" text="EN" toggleGroup="$lang" />
                </items>
             </Menu>
          </menus>

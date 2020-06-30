@@ -1,4 +1,4 @@
-package database;
+package hash;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Add">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Add">
   <tabs>
     <Tab text="Shto Lende">
       <content>
@@ -72,7 +72,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="146.0" layoutY="316.0" prefHeight="17.0" prefWidth="60.0" text="Profesor">
+                  <Label layoutX="146.0" layoutY="316.0" prefHeight="17.0" prefWidth="60.0" text="controllers.Profesor">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
@@ -85,7 +85,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Shto Student ">
+      <Tab text="Shto controllers.Student ">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="276.0">
                <children>
@@ -94,7 +94,7 @@
                         <TextField fx:id="sEmri" layoutX="50.0" layoutY="97.0" prefHeight="45.0" prefWidth="184.0" promptText="Emri..." />
                         <TextField fx:id="sMbiemri" layoutX="51.0" layoutY="165.0" prefHeight="45.0" prefWidth="184.0" promptText="Mbiemri..." />
                         <TextField fx:id="sEmail" layoutX="50.0" layoutY="235.0" prefHeight="45.0" prefWidth="184.0" promptText="Email.." />
-                        <Label layoutX="100.0" layoutY="37.0" prefHeight="31.0" prefWidth="126.0" text="Student">
+                        <Label layoutX="100.0" layoutY="37.0" prefHeight="31.0" prefWidth="126.0" text="controllers.Student">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>

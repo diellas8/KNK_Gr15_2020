@@ -1,6 +1,9 @@
+package controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,11 +13,36 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable {
 
 private Parent root;
 private Stage primaryStage= new Stage();
+
+    @FXML
+    private Menu file;
+
+    @FXML
+    private MenuItem logout;
+
+    @FXML
+    private MenuItem exit;
+
+    @FXML
+    private Menu help;
+
+    @FXML
+    private MenuItem about;
+
+    @FXML
+    private Menu language;
+
+    @FXML
+    private ToggleGroup lang;
+
 
     @FXML
     private TextField email;
@@ -22,11 +50,6 @@ private Stage primaryStage= new Stage();
     @FXML
     private PasswordField password;
 
-    @FXML
-    private MenuButton language;
-
-    @FXML
-    private ToggleGroup lang;
 
     @FXML
     void changeLang(ActionEvent event) {
@@ -38,11 +61,17 @@ private Stage primaryStage= new Stage();
 
 
     }
+    void lang (){
+        Locale locale = new Locale("alb");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
+        password.setPromptText(bundle.getString("password"));
+
+    }
 
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);
@@ -67,11 +96,11 @@ private Stage primaryStage= new Stage();
 
         try {
 
-            int role = database.Password.getData(email.getText(), password.getText());
+            int role = hash.Password.getData(email.getText(), password.getText());
         switch (role){
             case 1: {
-                root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-                primaryStage.setTitle("Admin");
+                root = FXMLLoader.load(getClass().getResource("fxml/admin.fxml"));
+                primaryStage.setTitle("controllers.Admin");
                 primaryStage.setScene(new Scene(root, 800, 550));
                 primaryStage.setResizable(false);
                 primaryStage.show();
@@ -80,7 +109,7 @@ private Stage primaryStage= new Stage();
             }
             case 2:{
                 Profesor.saveEmail(email.getText());
-                root = FXMLLoader.load(getClass().getResource("profesor1.fxml"));
+                root = FXMLLoader.load(getClass().getResource("fxml/profesor1.fxml"));
                 primaryStage.setTitle("Orari i konsultimeve");
                 primaryStage.setScene(new Scene(root, 700, 500));
                 primaryStage.setResizable(false);
@@ -90,7 +119,7 @@ private Stage primaryStage= new Stage();
 
             }
             case 3: {
-                root = FXMLLoader.load(getClass().getResource("student.fxml"));
+                root = FXMLLoader.load(getClass().getResource("fxml/student.fxml"));
                 primaryStage.setTitle("Orari i konsultimeve");
                 primaryStage.setScene(new Scene(root, 700, 550));
                 primaryStage.setResizable(false);
@@ -114,6 +143,10 @@ private Stage primaryStage= new Stage();
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        lang();
+    }
 }
 
 

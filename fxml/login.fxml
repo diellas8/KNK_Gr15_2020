@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" style="-fx-background-color: #eaf5fb;" stylesheets="@../style/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Login">
+   <children>
+      <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar prefHeight="26.0" prefWidth="782.0" styleClass="navbar">
+               <menus>
+                  <Menu fx:id="file" mnemonicParsing="false" text="Dokumenti">
+                     <items>
+                        <MenuItem fx:id="logout" disable="true" mnemonicParsing="false" onAction="#logOut"
+                                  text="Shkycu">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN"
+                                                  shortcut="UP"/>
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Mbylle">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN"
+                                                  shortcut="UP"/>
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu fx:id="help" mnemonicParsing="false" text="Ndihme">
+                     <items>
+                        <MenuItem fx:id="about" mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu fx:id="language" mnemonicParsing="false" text="Gjuha">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="ALB">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="lang"/>
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="EN" toggleGroup="$lang"/>
+                     </items>
+                  </Menu>
+               </menus>
+               <padding>
+                  <Insets top="1.0"/>
+               </padding>
+            </MenuBar>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+               </padding>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                        style="-fx-font-family: Quicksand; -fx-font-weight: bolder; -fx-font-size: 2.4em; -fx-fill: white;"
+                        text="Menaxhimi i Konsultimeve FIEK" wrappingWidth="430.13671875">
+                     <HBox.margin>
+                        <Insets left="90.0" top="30.0"/>
+                     </HBox.margin>
+                  </Text>
+                  <HBox HBox.hgrow="ALWAYS"/>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="210.0" layoutY="145.0" prefHeight="200.0" prefWidth="278.0">
+         <children>
+            <HBox prefHeight="60.0" prefWidth="277.0"
+                  style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;">
+               <children>
+                  <TextField fx:id="email" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" promptText="Email..."
+                             style="-fx-background-color: #e6f2ff; -fx-opacity: 0.7; -fx-font-weight: bolder;"
+                             HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets top="10.0"/>
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0"/>
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <PasswordField fx:id="password" alignment="CENTER" prefHeight="52.0" prefWidth="300.0"
+                                 promptText="Fjalekalimi..." style="-fx-background-color: #e6f2ff; -fx-opacity: 0.7;">
+                     <font>
+                        <Font name="System Bold" size="16.0"/>
+                     </font>
+                     <HBox.margin>
+                        <Insets/>
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#checkData" prefHeight="47.0" prefWidth="300.0"
+                    style="-fx-background-color: #b3cccc; -fx-opacity: 0.9; -fx-background-radius: 100; -fx-font-weight: bolder; -fx-font-family: Quicksand;"
+                    text="Kycu" textFill="#655a5a">
+               <VBox.margin>
+                  <Insets top="5.0"/>
+               </VBox.margin>
+               <font>
+                  <Font size="20.0"/>
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

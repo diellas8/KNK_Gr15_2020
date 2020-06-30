@@ -1,8 +1,9 @@
+package controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +22,27 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Admin implements Initializable {
+
+    @FXML
+    private Menu file;
+
+    @FXML
+    private MenuItem logout;
+
+    @FXML
+    private MenuItem exit;
+
+    @FXML
+    private Menu help;
+
+    @FXML
+    private MenuItem about;
+
+    @FXML
+    private Menu language;
+
+    @FXML
+    private ToggleGroup lang;
 
 
     Connection dbcon;
@@ -78,7 +100,7 @@ public class Admin implements Initializable {
     @FXML
     void logOut(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Orari i konsultimeve");
         primaryStage.setScene(new Scene(root, 700, 500));
@@ -92,7 +114,7 @@ public class Admin implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);
@@ -173,7 +195,7 @@ public class Admin implements Initializable {
 
     public void shto(javafx.event.ActionEvent event) throws IOException {
         Parent root;
-        root= FXMLLoader.load(getClass().getResource("add.fxml"));
+        root= FXMLLoader.load(getClass().getResource("fxml/add.fxml"));
          Stage primaryStage=new Stage();
         primaryStage.setTitle("add");
         primaryStage.setScene(new Scene(root, 285, 502));

@@ -7,9 +7,11 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -23,7 +25,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin">
+<BorderPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Admin">
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +33,7 @@
                <children>
                   <ImageView fitHeight="129.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/logo_6kendesh.png" />
+                        <Image url="@../Images/logo_6kendesh.png" />
                      </image>
                      <VBox.margin>
                         <Insets left="80.0" top="20.0" />
@@ -41,7 +43,7 @@
                      <graphic>
                         <ImageView fitHeight="108.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/profesor.png" />
+                              <Image url="@../Images/profesor.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,7 +59,7 @@
                      <graphic>
                         <ImageView fitHeight="104.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/lenda.png" />
+                              <Image url="@../Images/lenda.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -70,7 +72,7 @@
                      <graphic>
                         <ImageView fitHeight="141.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/student.jpg" />
+                              <Image url="@../Images/student.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -128,8 +130,8 @@
                         <Insets right="5.0" top="15.0" />
                      </GridPane.margin>
                      <stylesheets>
-                        <URL value="@tabela_prof.css" />
-                        <URL value="@orari.css" />
+                        <URL value="@../style/tabela_prof.css" />
+                        <URL value="@../style/orari.css" />
                      </stylesheets>
                   </TableView>
                   <TextField fx:id="textInput" prefHeight="36.0" prefWidth="329.0" promptText="Kerko...">
@@ -155,7 +157,7 @@
                   </Button>
                   <ImageView fitHeight="49.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/search-icon.png" />
+                        <Image url="@../Images/search-icon.png" />
                      </image>
                      <GridPane.margin>
                         <Insets left="12.0" />
@@ -173,29 +175,39 @@
       </VBox>
    </center>
    <top>
-      <MenuBar prefHeight="26.0" prefWidth="782.0" styleClass="navbar" BorderPane.alignment="CENTER">
+      <MenuBar  prefHeight="26.0" prefWidth="782.0" styleClass="navbar" BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="Dokumenti">
+            <Menu fx:id="file" mnemonicParsing="false" text="Dokumenti">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="Shkycu">
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Shkycu">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Mbylle">
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Mbylle">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Ndihme">
+            <Menu fx:id="help" mnemonicParsing="false" text="Ndihme">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
-                  <accelerator>
-                     <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                  </accelerator>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#rrethNesh" text="Rreth nesh">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
                   </MenuItem>
+               </items>
+            </Menu>
+            <Menu fx:id="language" mnemonicParsing="false" text="Gjuha">
+               <items>
+                  <RadioMenuItem mnemonicParsing="false" text="ALB">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="lang" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" text="EN" toggleGroup="$lang" />
                </items>
             </Menu>
          </menus>

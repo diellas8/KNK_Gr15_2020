@@ -1,3 +1,5 @@
+package controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +48,7 @@ public class Student implements Initializable {
     @FXML
     void logOut(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Orari i konsultimeve");
         primaryStage.setScene(new Scene(root, 700, 500));
@@ -60,7 +62,7 @@ public class Student implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);

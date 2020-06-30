@@ -1,5 +1,5 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+package controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.sqlite.SQLiteException;
 import properties.Konsultim_P;
-import properties.Lenda;
 import properties.baza;
 
 import java.io.IOException;
@@ -30,6 +29,27 @@ public class Profesor implements Initializable {
 
     private static String email;
     private static int mesimdhenesi;
+
+    @FXML
+    private Menu file;
+
+    @FXML
+    private MenuItem logout;
+
+    @FXML
+    private MenuItem exit;
+
+    @FXML
+    private Menu help;
+
+    @FXML
+    private MenuItem about;
+
+    @FXML
+    private Menu language;
+
+    @FXML
+    private ToggleGroup lang;
 
 
     @FXML
@@ -113,7 +133,7 @@ public class Profesor implements Initializable {
     @FXML
     void logOut(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Orari i konsultimeve");
         primaryStage.setScene(new Scene(root, 700, 500));
@@ -127,7 +147,7 @@ public class Profesor implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/about.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root,250,150);
         primaryStage.setScene(scene);

@@ -154,7 +154,7 @@ public class Mesimdhenes extends baza {
            String mbiemri = res.getString("Mbiemri");
            String email = res.getString("Email");
            int statusi = res.getInt("Statusi");
-           String Statusi = statusi == 1 ? "Profesor" : "Asistent";
+           String Statusi = statusi == 1 ? "controllers.Profesor" : "Asistent";
            list.add(new Mesimdhenes(m_id, emri, mbiemri, email, Statusi));
 
         }
