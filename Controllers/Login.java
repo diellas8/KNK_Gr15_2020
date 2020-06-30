@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class Login implements Initializable {
 
     private final Stage primaryStage = new Stage();
+    private String aboutFile;
     @FXML
     private Button button = new Button();
 
@@ -61,8 +62,15 @@ public class Login implements Initializable {
     void lang() {
         String lang = "";
         RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
-        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
-        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        if (selectedRadioButton.getText().equals("ALB")) {
+            lang = "al";
+            aboutFile="FXML/about2.fxml";
+        }
+        else if (selectedRadioButton.getText().equals("EN"))
+        {
+            lang = "en";
+            aboutFile="FXML/about.fxml";
+        }
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
         password.setPromptText(bundle.getString("password"));
@@ -78,7 +86,7 @@ public class Login implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource(aboutFile));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
@@ -155,6 +163,7 @@ public class Login implements Initializable {
         button.setText("Kycu");
 
         lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
+        aboutFile="fxml/about2.fxml";
 
 
     }

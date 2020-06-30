@@ -20,17 +20,22 @@
         </ImageView>
         <VBox prefHeight="150.0" prefWidth="152.0">
             <children>
-                <Label text="Consultations">
+                <Label text="Konsultimet">
                     <VBox.margin>
                         <Insets left="30.0" top="30.0"/>
                     </VBox.margin>
                 </Label>
-                <Label text="App Version 1.0.1">
+                <Label text="Verzioni: 1.0.1">
                     <VBox.margin>
                         <Insets left="30.0" top="10.0"/>
                     </VBox.margin>
                 </Label>
-                <Label text="Relased: June 2020">
+                <Label text="E publikuar me:">
+                    <VBox.margin>
+                        <Insets left="30.0" top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <Label text="Qershor 2020">
                     <VBox.margin>
                         <Insets left="30.0" top="10.0"/>
                     </VBox.margin>

@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class Profesor implements Initializable {
     private static Connection dbCon = null;
-
+    private String aboutFile;
 
     private static Statement statement = null;
 
@@ -174,7 +174,7 @@ public class Profesor implements Initializable {
     @FXML
     void rrethNesh(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/about.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource(aboutFile));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root, 250, 150);
         primaryStage.setScene(scene);
@@ -330,6 +330,10 @@ public class Profesor implements Initializable {
         setOrariTab();
         lang.selectedToggleProperty().addListener((ob, o, n) -> lang());
 
+        aboutFile="FXML/about2.fxml";
+
+
+
 
     }
 
@@ -429,8 +433,15 @@ public class Profesor implements Initializable {
     void lang() {
         String lang = "";
         RadioMenuItem selectedRadioButton = (RadioMenuItem) this.lang.getSelectedToggle();
-        if (selectedRadioButton.getText().equals("ALB")) lang = "al";
-        else if (selectedRadioButton.getText().equals("EN")) lang = "en";
+        if (selectedRadioButton.getText().equals("ALB")) {
+            lang = "al";
+            aboutFile="FXML/about2.fxml";
+        }
+        else if (selectedRadioButton.getText().equals("EN"))
+        {
+            lang = "en";
+            aboutFile="FXML/about.fxml";
+        }
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.lang", locale);
         file.setText(bundle.getString("menu1"));
