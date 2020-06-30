@@ -70,7 +70,7 @@ public class Admin implements Initializable {
         language.setText(bundle.getString("menu3"));
         addBtn.setText(bundle.getString("admin_add"));
         deleteBtn.setText(bundle.getString("admin_delete"));
-        textInput.setText(bundle.getString("admin_searchbar"));
+        textInput.setPromptText(bundle.getString("admin_searchbar"));
         btnLendet.setText(bundle.getString("admin_lendet"));
         btnProfesor.setText(bundle.getString("admin_prof"));
         btnStudentet.setText(bundle.getString("admin_studentet"));
@@ -181,6 +181,10 @@ public class Admin implements Initializable {
 
             lbStatus.setText(bundle.getString("admin_label_s"));
             Student.ViewColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, textInput);
+            id.setText(bundle.getString("admin_profesor_k1"));
+            Emri.setText(bundle.getString("admin_profesor_k2"));
+            Mbiemri.setText(bundle.getString("admin_profesor_k3"));
+            Email.setText(bundle.getString("admin_profesor_k4"));
             Roli.setVisible(false);
 
 
@@ -188,7 +192,11 @@ public class Admin implements Initializable {
         } else if (event.getSource() == btnProfesor) {
             lbStatus.setText(bundle.getString("admin_label_p"));
             Mesimdhenes.startColumn(dbcon, tabelaAdmin, id, Emri, Mbiemri, Email, Roli, textInput);
-
+            id.setText(bundle.getString("admin_profesor_k1"));
+            Emri.setText(bundle.getString("admin_profesor_k2"));
+            Mbiemri.setText(bundle.getString("admin_profesor_k3"));
+            Email.setText(bundle.getString("admin_profesor_k4"));
+            Roli.setText(bundle.getString("admin_profesor_k5"));
 
         } else if (event.getSource() == btnLendet) {
             lbStatus.setText(bundle.getString("admin_label_l"));

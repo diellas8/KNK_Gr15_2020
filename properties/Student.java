@@ -45,7 +45,6 @@ public class Student extends baza{
     public static void ViewColumn(Connection dbcon, TableView tabelaAdmin, TableColumn <?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TextField filterField){
         changeWidth(tabelaAdmin, first, second, third, fourth);
         changeVisibility(first, second, third, fourth);
-        changeName(first, second, third, fourth);
         first.setCellValueFactory(new PropertyValueFactory<>("s_ID"));
         second.setCellValueFactory(new PropertyValueFactory<>("emri"));
         third.setCellValueFactory(new PropertyValueFactory<>("mbiemri"));
@@ -120,12 +119,7 @@ public class Student extends baza{
         fourth.maxWidthProperty().bind(tableView.widthProperty().multiply(0.3));
     }
 
-    private static void  changeName(TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth) {
-        first.setText("ID");
-        second.setText("Emri");
-        third.setText("Mbiemri");
-        fourth.setText("Email");
-    }
+
 
 
     private static ObservableList <Student> getStudentet(Connection dbcon) throws SQLException {

@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 
 import java.sql.*;
-import java.util.ArrayList;
+
 
 public class Mesimdhenes extends baza {
     private int m_id;
@@ -56,7 +56,6 @@ public class Mesimdhenes extends baza {
                               TableColumn<?,?> third, TableColumn<?,?>fourth, TableColumn<?,?> fifth, TextField filterField){
         changeVisibility(first, second, third, fourth, fifth);
         changeWidth(tabelaAdmin,first, second, third, fourth, fifth);
-        changeName(first, second, third, fourth, fifth);
         first.setCellValueFactory(new PropertyValueFactory<>("m_id"));
         second.setCellValueFactory(new PropertyValueFactory<>("Emri"));
         third.setCellValueFactory(new PropertyValueFactory<>("Mbiemri"));
@@ -112,13 +111,7 @@ public class Mesimdhenes extends baza {
         fifth.setVisible(true);
     }
 
-    private static void changeName(TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
-        first.setText("ID");
-        second.setText("Emri");
-        third.setText("Mbiemri");
-        fourth.setText("Email");
-        fifth.setText("Statusi");
-    }
+
 
     public static void changeWidth(TableView tableView,TableColumn<?,?> first, TableColumn<?,?> second, TableColumn<?,?> third, TableColumn<?,?> fourth, TableColumn<?,?> fifth) {
         first.prefWidthProperty().bind(tableView.widthProperty().multiply(0.1));
@@ -154,7 +147,7 @@ public class Mesimdhenes extends baza {
            String mbiemri = res.getString("Mbiemri");
            String email = res.getString("Email");
            int statusi = res.getInt("Statusi");
-           String Statusi = statusi == 1 ? "controllers.Profesor" : "Asistent";
+           String Statusi = statusi == 1 ? "Profesor" : "Asistent";
            list.add(new Mesimdhenes(m_id, emri, mbiemri, email, Statusi));
 
         }
@@ -182,7 +175,6 @@ public class Mesimdhenes extends baza {
 
         } catch (SQLException ex){
             ex.printStackTrace();
-
         }
 
     }
