@@ -1,11 +1,10 @@
+package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.sqlite.SQLiteException;
-import properties.Lenda;
-import javax.swing.*;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.*;

@@ -9,7 +9,7 @@
 <?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="800.0"
             style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="controllers.Admin">
+            fx:controller="Controllers.Admin">
     <left>
         <HBox BorderPane.alignment="CENTER">
             <children>
